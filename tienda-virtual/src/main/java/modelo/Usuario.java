@@ -1,5 +1,6 @@
 package modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ public class Usuario {
 
 	@Id
 	@NotEmpty
+	@Column(length = 10)
 	private String cedula;
 	
 	@NotNull

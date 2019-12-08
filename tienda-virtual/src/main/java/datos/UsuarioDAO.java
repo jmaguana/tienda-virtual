@@ -28,4 +28,5 @@ public class UsuarioDAO {
 		em.find(Usuario.class, cedula);
 		return null;
 	}
+	
 }

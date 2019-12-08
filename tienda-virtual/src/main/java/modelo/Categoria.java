@@ -26,9 +26,8 @@ public class Categoria {
 	
 	private String imagen;
 	
-	//@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-	//@JoinColumn(name="categoria", referencedColumnName = "codigo")
-	//private List<Producto> productos;
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	private List<Producto> productos;
 
 	public int getCodigo() {
 		return codigo;
