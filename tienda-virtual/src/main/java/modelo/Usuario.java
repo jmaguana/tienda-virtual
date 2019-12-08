@@ -11,7 +11,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Usuario {
 
-
 	@Id
 	@NotEmpty
 	private String cedula;
@@ -67,6 +66,12 @@ public class Usuario {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
+				+ ", pass=" + pass + "]";
 	}
 	
 	
