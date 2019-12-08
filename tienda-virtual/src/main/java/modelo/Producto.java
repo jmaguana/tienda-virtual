@@ -1,6 +1,7 @@
 package modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Producto {
 	
 	@Id
+	@GeneratedValue
 	private int codigo;
 	
 	@NotNull
