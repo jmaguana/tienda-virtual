@@ -24,9 +24,11 @@ public class Categoria {
 	@Size( max=150)
 	private String descripcion;
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-	@JoinColumn(name="categoria", referencedColumnName = "codigo")
-	private List<Producto> productos;
+	private String imagen;
+	
+	//@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	//@JoinColumn(name="categoria", referencedColumnName = "codigo")
+	//private List<Producto> productos;
 
 	public int getCodigo() {
 		return codigo;
@@ -52,19 +54,14 @@ public class Categoria {
 		this.descripcion = descripcion;
 	}
 
-	public List<Producto> getProductos() {
-		return productos;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
+
 	
-	public void addProducto(Producto producto) {
-		if(productos == null) {
-			productos = new ArrayList<>();
-		}
-		productos.add(producto);
-	}
 	
 }

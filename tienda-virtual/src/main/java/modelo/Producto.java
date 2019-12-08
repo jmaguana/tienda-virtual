@@ -1,14 +1,16 @@
 package modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Producto {
+public class Producto {    
 	
 	@Id
 	@GeneratedValue
@@ -25,7 +27,13 @@ public class Producto {
 	@NotNull
 	private int stock;
 	
+	//EAGER trae inmediatamente
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "categoria")
+	private Categoria categoria;
 
+	private String imagen;
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -66,7 +74,20 @@ public class Producto {
 		this.stock = stock;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
 
-	
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	
 }
