@@ -4,8 +4,33 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="">
-	</ui:composition>
-<h:head></h:head>
-</html>
+	<h:head></h:head>
 	
+	<h:body>
+	
+		<h:form>
+		
+			<h:dataTable value="#{categoriaBean.lista}" var="categoria">
+			
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{categoria.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Descripción</f:facet>
+					#{categoria.descripcion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Imagen</f:facet>
+					#{categoria.imagen}
+				</h:column>
+				<h:commandButton action="#{categoriaBean.editar()}" value="Editar" immediate="true"/>
+			</h:dataTable>
+			
+			<h:commandButton action="BuscarCategoria" value="Crear Nuevo" immediate="true"/>
+			
+		</h:form>
+		
+	</h:body>
+	
+</html>

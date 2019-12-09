@@ -30,9 +30,11 @@
 			<h:inputSecret value="#{usuarioBean.usuario.pass}" id="password"/>
 			<h:message for="password"/>
 			
+		</h:panelGrid>
+		
+			<h:commandButton action="UsuarioCRUD" value="Cancelar" immediate="true"/>
 			<h:commandButton action="#{usuarioBean.guardar()}" value="Guardar"/>
 			
-		</h:panelGrid>
 	
 	</h:form>
 	</h:body>

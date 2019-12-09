@@ -4,7 +4,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="">
+	<h:head></h:head>
+	<h:body>
+		<h:form>
+			
+			<h:panelGrid columns="3">
+			
+			<h:outputLabel value="Nombre:" for="nombre" />
+			<h:inputText value="#{categoriaBean.categoria.nombre}" id="nombre"/>
+			<h:message for="nombre"/>
+			
+			<h:outputLabel value="Descripción:" for="descripcion" />
+			<h:inputText value="#{categoriaBean.categoria.descripcion}" id="descripcion"/>
+			<h:message for="descripcion"/>
+			
+			<h:outputLabel value="Imagen:" for="imagen" />
+			<h:inputText value="#{categoriaBean.categoria.imagen}" id="imagen"/>
+			<h:message for="imagen"/>
+			
+		</h:panelGrid>
+				
+		<h:commandButton action="CategoriaCRUD" value="Cancelar" immediate="true"/>
+		<h:commandButton action="#{categoriaBean.guardar()}" value="Guardar"/>
+			
+				
+		</h:form>
+	</h:body>
 	
-	</ui:composition>
 </html>

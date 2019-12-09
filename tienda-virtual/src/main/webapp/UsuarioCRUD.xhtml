@@ -4,8 +4,37 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="">
-	</ui:composition>
+
+	<h:head></h:head>
 	
-<h:head></h:head>
+	<h:body>
+	
+		<h:form>
+		
+			<h:dataTable value="#{usuarioBean.lista}" var="usuario">
+			
+				<h:column>
+					<f:facet name="header">Cédula</f:facet>
+					#{usuario.cedula}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{usuario.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Apellido</f:facet>
+					#{usuario.apellidos}
+				</h:column>
+				<h:column>
+					<f:facet name="header">E-mail</f:facet>
+					#{usuario.email}
+				</h:column>
+			</h:dataTable>
+			
+			<h:commandButton action="CrearUsuario" value="Crear Nuevo" immediate="true"/>
+			
+		</h:form>
+		
+	</h:body>
+	
 </html>
