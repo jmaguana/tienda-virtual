@@ -4,8 +4,42 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="">
-	</ui:composition>
-
-<h:head></h:head> 
+	
+<h:head></h:head>
+	
+	<h:body>
+	
+		<h:form>
+		
+			<h:dataTable value="#{productoBean.lista}" var="producto">
+			
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{producto.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Descripcion</f:facet>
+					#{producto.descripcion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Precio</f:facet>
+					#{producto.precio}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Categoría</f:facet>
+					#{producto.categoria.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					#{producto.stock}
+				</h:column>
+			</h:dataTable>
+			
+			<h:commandButton action="CrearUsuario" value="Crear Nuevo" immediate="true"/>
+			
+		</h:form>
+		
+	</h:body>
+	
 </html>
+
