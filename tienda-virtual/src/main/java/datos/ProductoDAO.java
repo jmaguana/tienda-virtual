@@ -1,8 +1,11 @@
 package datos;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import modelo.Producto;
 
@@ -25,7 +28,17 @@ public class ProductoDAO {
 	}
 	
 	public Producto leer(int codigo) {
-		em.find(Producto.class, codigo);
-		return null;
+		Producto producto = em.find(Producto.class, codigo);
+		producto.getCategoria();
+		return producto;
+	}
+	
+	public List<Producto> listar(){
+		String jpql = "SELECT o FROM Producto o";
+		Query query = em.createQuery(jpql, Producto.class);
+		List<Producto> productos = query.getResultList();
+		
+		
+		return productos;
 	}
 }
