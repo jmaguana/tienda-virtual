@@ -1,8 +1,11 @@
 package datos;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import modelo.Categoria;
 
@@ -26,5 +29,12 @@ public class CategoriaDAO {
 	public Categoria leer(int codigo) {
 		em.find(Categoria.class, codigo);
 		return null;
+	}
+	
+	public List<Categoria> listar(){
+		String jpql = "SELECT o FROM Categoria o";
+		Query query = em.createQuery(jpql, Categoria.class);
+		List<Categoria> categorias = query.getResultList();
+		return categorias;
 	}
 }

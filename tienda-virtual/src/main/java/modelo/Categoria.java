@@ -26,7 +26,7 @@ public class Categoria {
 	
 	private String imagen;
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Producto> productos;
 
 	public int getCodigo() {
