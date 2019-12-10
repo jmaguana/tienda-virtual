@@ -33,10 +33,23 @@ public class UsuarioDAO {
 	}
 	
 	public List<Usuario> listar(){
-		String jpql = "SELECT o FROM Usuario o";
+		String jpql = "SELECT o FROM Usuario o"; 
 		Query query = em.createQuery(jpql,Usuario.class);
 		List<Usuario> usuarios = query.getResultList();
 		return usuarios;
+	}
+	
+	public boolean login(String email, String pass) {
+		String jpql = "SELECT o FROM Usuario o WHERE o.email = :id AND o.pass = :pass";
+		Query query = em.createQuery(jpql,Usuario.class);
+		query.setParameter("id", email);
+		query.setParameter("pass", pass);
+		try {
+			Usuario u = (Usuario) query.getSingleResult();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	
 }

@@ -2,15 +2,16 @@ package vista;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import datos.ProductoDAO;
+import modelo.Categoria;
 import modelo.Producto;
 
 @ManagedBean
 public class ProductoBean {
-
 	private Producto producto;
 	private List<Producto> lista;
 	private int codigo;
@@ -18,17 +19,31 @@ public class ProductoBean {
 	@Inject
 	private ProductoDAO pDao;
 
+	@PostConstruct
 	public void init() {
 		producto = new Producto();
+		producto.setCategoria(new Categoria());
 		loadProducto();
 	}
 	
 	public void loadProducto() {
+		this.codigo = 0;
 		lista = pDao.listar();
 	}
 	
 	public String guardar() {
-		pDao.insertar(producto);
+		if(codigo == 0) {
+			pDao.insertar(producto);
+		}else {
+			pDao.actualizar(producto);
+		}
+		loadProducto();
+		return "ProductoCRUD";
+	}
+	
+	public String eliminar(int codigo) {
+		pDao.borrar(codigo);
+		loadProducto();
 		return "ProductoCRUD";
 	}
 	
@@ -61,6 +76,5 @@ public class ProductoBean {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	
-	
+
 }

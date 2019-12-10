@@ -4,9 +4,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	
-	<h:head></h:head>
-	<h:body>
+
+<ui:composition template="TemplateFormulario.xhtml">
+
+<ui:define name="formulario">
 	
 	<h:form>
 	
@@ -28,15 +29,19 @@
 			<h:message for="stock"/>
 			
 			<h:outputLabel value="Categoria:" for="categoria" />
-			<h:inputSecret value="#{productoBean.producto.categoria.codigo}" id="categoria"/>
+			<h:selectOneMenu value = "#{productoBean.producto.categoria.codigo}" >
+         		<f:selectItems value = "#{categoriaBean.listaCategorias()}" />
+      	 	</h:selectOneMenu>
 			<h:message for="categoria"/>
 			
 		</h:panelGrid>
-		
+			
 			<h:commandButton action="ProductoCRUD" value="Cancelar" immediate="true"/>
 			<h:commandButton action="#{productoBean.guardar()}" value="Guardar"/>
 			
-	
 	</h:form>
-	</h:body>
+	</ui:define>
+</ui:composition>
+
 </html>
+	

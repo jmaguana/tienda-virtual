@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body> 
+	<div id="header"> 
+	    <h1><a href="/tienda-virtual/faces/TopClientes.xhtml" title="Inicio">Inicio</a></h1> 
+	    <ul> 
+	        <li><a href="/tienda-virtual/faces/TopClientes.xhtml">Top Clientes</a></li> 
+	        <li><a href="/tienda-virtual/faces/UsuarioCRUD.xhtml">Usuarios</a></li> 
+	        <li><a href="/tienda-virtual/faces/ProductoCRUD.xhtml">Productos</a></li> 
+	        <li><a href="/tienda-virtual/faces/CategoriaCRUD.xhtml">Categorías</a></li> 
+	    </ul> 	
+	</div>
+	<div>
+	    <ui:insert name="buscar">
+	    
+	    </ui:insert>
+	    </div>
+	    
+	    <div>
+	    <ui:insert name="tabla">
+	    
+	    </ui:insert>
+	    </div>
+	    <div>
+	    <ui:insert name="botones">
+	    
+	    </ui:insert>
+	    </div>
+</h:body> 
+</html>

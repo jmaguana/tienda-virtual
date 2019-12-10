@@ -30,6 +30,7 @@ public class Producto {
 	//EAGER trae inmediatamente
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria")
+	@NotNull
 	private Categoria categoria;
 
 	private String imagen;

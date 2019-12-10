@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="TemplateFormulario.xhtml">
+
+<ui:define name="formulario">
+	
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="E-Mail:" for="email" />
+			<h:inputText value="#{looginBean.email}" id="email"/>
+			<h:message for="email"/>
+			
+			<h:outputLabel value="Contraseña:" for="pass" />
+			<h:inputText value="#{looginBean.pass}" id="pass"/>
+			<h:message for="pass"/>
+			
+		</h:panelGrid>
+		<h:commandButton action="#{looginBean.login()}" value="Iniciar Sesion"/>
+	</h:form>
+	
+	</ui:define>
+</ui:composition>
+
+</html>
