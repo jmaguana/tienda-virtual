@@ -11,6 +11,7 @@ import datos.UsuarioDAO;
 import modelo.Usuario;
 
 @ManagedBean
+@SessionScoped
 public class UsuarioBean {
 	
 	private Usuario usuario;
@@ -22,13 +23,16 @@ public class UsuarioBean {
 
 	@PostConstruct
 	public void init() {
-		usuario = new Usuario();
+		
 		loadUsuarios();
 	}
 
 	public void loadUsuarios() {
+		usuario = new Usuario();
+		this.cedula = null;
 		lista = uDao.listar();
 	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -38,7 +42,12 @@ public class UsuarioBean {
 	}
 	
 	public String editar(String cedula) {
+		this.cedula = cedula;
 		usuario = uDao.leer(cedula);
+		if(usuario == null) {
+			loadUsuarios();
+			return "UsuarioCRUD";
+		}
 		return "CrearUsuario";
 	}
 	
@@ -75,4 +84,3 @@ public class UsuarioBean {
 	}
 	
 }
-

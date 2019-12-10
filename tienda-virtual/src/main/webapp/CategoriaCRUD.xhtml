@@ -4,12 +4,13 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<h:head></h:head>
-	
-	<h:body>
-	
-		<h:form>
-		
+<ui:composition template="TemplateInicio.xhtml">
+
+<ui:define name="tabla">
+
+
+
+<h:form>
 			<h:dataTable value="#{categoriaBean.lista}" var="categoria">
 			
 				<h:column>
@@ -29,10 +30,12 @@
 				</h:column>
 			</h:dataTable>
 			
-			<h:commandButton action="BuscarCategoria" value="Crear Nuevo" immediate="true"/>
+			<h:commandButton action="CrearCategoria" value="Crear Nuevo" immediate="true"/>
 			
 		</h:form>
 		
-	</h:body>
-	
+		
+	</ui:define>
+</ui:composition>
+
 </html>

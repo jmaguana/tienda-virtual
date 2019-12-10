@@ -1,6 +1,8 @@
 package vista;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +16,7 @@ public class CategoriaBean {
 	private Categoria categoria;
 	private List<Categoria> lista;
 	private int codigo;
+	private static Map<String,Object> listCategorias;
 	
 	@Inject
 	private CategoriaDAO cDao;
@@ -25,11 +28,26 @@ public class CategoriaBean {
 	}
 	
 	public void loadCategoria() {
+		this.codigo = 0;
 		lista = cDao.listar();
 	}
 	
+	public Map<String,Object> listaCategorias(){
+		listCategorias = new LinkedHashMap<String,Object>();
+		loadCategoria();
+		for(Categoria c: this.lista) {
+			listCategorias.put(c.getNombre(), c.getCodigo());
+		}
+		return listCategorias;
+	}
+	
 	public String guardar() {
-		cDao.insertar(categoria);
+		if(codigo == 0) {
+			cDao.insertar(categoria);
+		}else {
+			cDao.actualizar(categoria);
+		}
+		
 		loadCategoria();
 		return "CategoriaCRUD";
 	}
