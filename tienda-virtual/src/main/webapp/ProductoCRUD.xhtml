@@ -33,6 +33,9 @@
 					<f:facet name="header">Stock</f:facet>
 					#{producto.stock}
 				</h:column>
+				<h:column>
+					<h:commandButton action="#{productoBean.editar(producto.codigo)}" value="editar" immediate="true"/>			
+				</h:column>
 			</h:dataTable>
 			
 			<h:commandButton action="CrearUsuario" value="Crear Nuevo" immediate="true"/>

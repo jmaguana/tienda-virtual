@@ -24,7 +24,9 @@
 					<f:facet name="header">Imagen</f:facet>
 					#{categoria.imagen}
 				</h:column>
-				<h:commandButton action="#{categoriaBean.editar()}" value="Editar" immediate="true"/>
+				<h:column>
+					<h:commandButton action="#{categoriaBean.editar(categoria.codigo)}" value="Editar" immediate="true"/>
+				</h:column>
 			</h:dataTable>
 			
 			<h:commandButton action="BuscarCategoria" value="Crear Nuevo" immediate="true"/>

@@ -28,8 +28,8 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario leer(String cedula) {
-		em.find(Usuario.class, cedula);
-		return null;
+		Usuario usuario = em.find(Usuario.class, cedula);
+		return usuario;
 	}
 	
 	public List<Usuario> listar(){

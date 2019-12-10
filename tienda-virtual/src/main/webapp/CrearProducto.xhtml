@@ -4,6 +4,39 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="">
-	</ui:composition>
+	
+	<h:head></h:head>
+	<h:body>
+	
+	<h:form>
+	
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Nombre:" for="nombre" />
+			<h:inputText value="#{productoBean.producto.nombre}" id="nombre"/>
+			<h:message for="nombre"/>
+			
+			<h:outputLabel value="Descripción:" for="descripcion" />
+			<h:inputText value="#{productoBean.producto.descripcion}" id="descripcion"/>
+			<h:message for="descripcion"/>
+			
+			<h:outputLabel value="Precio:" for="precio" />
+			<h:inputText value="#{productoBean.producto.precio}" id="precio"/>
+			<h:message for="precio"/>
+			
+			<h:outputLabel value="Stock:" for="stock" />
+			<h:inputText value="#{productoBean.producto.stock}" id="stock"/>
+			<h:message for="stock"/>
+			
+			<h:outputLabel value="Categoria:" for="categoria" />
+			<h:inputSecret value="#{productoBean.producto.categoria.codigo}" id="categoria"/>
+			<h:message for="categoria"/>
+			
+		</h:panelGrid>
+		
+			<h:commandButton action="ProductoCRUD" value="Cancelar" immediate="true"/>
+			<h:commandButton action="#{productoBean.guardar()}" value="Guardar"/>
+			
+	
+	</h:form>
+	</h:body>
 </html>

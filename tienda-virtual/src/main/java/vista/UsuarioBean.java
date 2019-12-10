@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import datos.UsuarioDAO;
@@ -35,12 +36,12 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	/*
-	public String loadDatosEditar(String cedula) {
+	
+	public String editar(String cedula) {
 		usuario = uDao.leer(cedula);
 		return "CrearUsuario";
 	}
-	*/
+	
 	public String guardar() {
 		if(cedula==null) {
 			uDao.insertar(usuario);
@@ -64,10 +65,14 @@ public class UsuarioBean {
 		return cedula;
 	}
 
+	public String nuevo() {
+		usuario = new Usuario();
+		return "CrearUsuario";
+	}
+	
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
-	
 	
 }
 

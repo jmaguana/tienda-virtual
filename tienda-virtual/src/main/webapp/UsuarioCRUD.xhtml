@@ -4,7 +4,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-
 	<h:head></h:head>
 	
 	<h:body>
@@ -29,9 +28,12 @@
 					<f:facet name="header">E-mail</f:facet>
 					#{usuario.email}
 				</h:column>
+				<h:column>
+				<h:commandButton action="#{usuarioBean.editar(usuario.cedula)}" value="editar" immediate="true"/>	
+				</h:column>
 			</h:dataTable>
 			
-			<h:commandButton action="CrearUsuario" value="Crear Nuevo" immediate="true"/>
+			<h:commandButton action="#{usuarioBean.nuevo()}" value="Crear Nuevo" immediate="true"/>
 			
 		</h:form>
 		

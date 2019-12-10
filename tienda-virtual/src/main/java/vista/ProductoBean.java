@@ -27,6 +27,17 @@ public class ProductoBean {
 		lista = pDao.listar();
 	}
 	
+	public String guardar() {
+		pDao.insertar(producto);
+		return "ProductoCRUD";
+	}
+	
+	public String editar(int codigo) {
+		this.codigo = codigo;
+		this.producto = pDao.leer(codigo);
+		return "CrearProducto";
+	}
+	
 	public Producto getProducto() {
 		return producto;
 	}
