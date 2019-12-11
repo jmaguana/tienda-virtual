@@ -5,36 +5,38 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="TemplateFormulario.xhtml">
-
+<ui:define name="titulo">
+<h1>Crear Usuario</h1>
+</ui:define>
 <ui:define name="formulario">
 	
 	<h:form>
 	
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Cédula:" for="cedula" />
-			<h:inputText value="#{usuarioBean.usuario.cedula}" id="cedula"/>
+			<h:inputText class="form-control" value="#{usuarioBean.usuario.cedula}" id="cedula"/>
 			<h:message for="cedula"/>
 			
 			<h:outputLabel value="Nombre:" for="nombre" />
-			<h:inputText value="#{usuarioBean.usuario.nombre}" id="nombre"/>
+			<h:inputText class="form-control" value="#{usuarioBean.usuario.nombre}" id="nombre"/>
 			<h:message for="nombre"/>
 			
 			<h:outputLabel value="Apellido:" for="apellido" />
-			<h:inputText value="#{usuarioBean.usuario.apellidos}" id="apellido"/>
+			<h:inputText class="form-control" value="#{usuarioBean.usuario.apellidos}" id="apellido"/>
 			<h:message for="apellido"/>
 			
 			<h:outputLabel value="E-mail:" for="email" />
-			<h:inputText value="#{usuarioBean.usuario.email}" id="email"/>
+			<h:inputText class="form-control" value="#{usuarioBean.usuario.email}" id="email"/>
 			<h:message for="email"/>
 			
 			<h:outputLabel value="Contraseña:" for="password" />
-			<h:inputSecret value="#{usuarioBean.usuario.pass}" id="password"/>
+			<h:inputSecret class="form-control" value="#{usuarioBean.usuario.pass}" id="password"/>
 			<h:message for="password"/>
 			
 		</h:panelGrid>
-		
-			<h:commandButton action="UsuarioCRUD" value="Cancelar" immediate="true"/>
-			<h:commandButton action="#{usuarioBean.guardar()}" value="Guardar"/>
+		<br />
+			<h:commandButton class="btn btn-primary btn-modify" action="UsuarioCRUD" value="Cancelar" immediate="true"/>
+			<h:commandButton class="btn btn-primary btn-modify" action="#{usuarioBean.guardar()}" value="Guardar"/>
 			
 	
 	</h:form>

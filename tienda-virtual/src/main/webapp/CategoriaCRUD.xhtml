@@ -6,36 +6,59 @@
 
 <ui:composition template="TemplateInicio.xhtml">
 
+<ui:define name="titulo">
+<h1>Categorias</h1>
+</ui:define>
+
 <ui:define name="tabla">
 
-
-
 <h:form>
-			<h:dataTable value="#{categoriaBean.lista}" var="categoria">
+
+			<h:dataTable class=".rwd-table" value="#{categoriaBean.lista}" var="categoria">
 			
-				<h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Imagen</f:facet>
+					
+					<h:graphicImage value="#{categoria.imagen}" width="80px" height="80px">
+					</h:graphicImage>
+
+				</h:column>
+			
+				<h:column class="columnass">
 					<f:facet name="header">Nombre</f:facet>
 					#{categoria.nombre}
 				</h:column>
-				<h:column>
+				<h:column class="columnass">
 					<f:facet name="header">Descripción</f:facet>
 					#{categoria.descripcion}
 				</h:column>
+				
 				<h:column>
-					<f:facet name="header">Imagen</f:facet>
-					#{categoria.imagen}
+				<f:facet name="header">Editar</f:facet>
+					<h:commandButton  class="btn btn-primary btn-modify" action="#{categoriaBean.editar(categoria.codigo)}" value="editar" immediate="true"/>
 				</h:column>
+				
 				<h:column>
-					<h:commandButton action="#{categoriaBean.editar(categoria.codigo)}" value="Editar" immediate="true"/>
+				<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton  class="btn btn-primary btn-modify" action="#{categoriaBean.eliminar(categoria.codigo)}" value="eliminar" immediate="true"/>
 				</h:column>
+				
 			</h:dataTable>
 			
-			<h:commandButton action="CrearCategoria" value="Crear Nuevo" immediate="true"/>
+			
 			
 		</h:form>
 		
 		
 	</ui:define>
+	
+	<ui:define name="botones">
+	<h:form>
+	
+	<h:commandButton class="btn btn-primary btn-modify" action="CrearCategoria" value="Crear Nuevo" immediate="true"/>
+	</h:form>
+	</ui:define>
+	
 </ui:composition>
 
 </html>
