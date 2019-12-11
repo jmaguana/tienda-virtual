@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Categoria {
 
@@ -21,6 +23,7 @@ public class Categoria {
 	@GeneratedValue
 	private int codigo;
 	@NotNull
+	@NotEmpty
 	private String nombre;
 	@Size( max=150)
 	private String descripcion;
