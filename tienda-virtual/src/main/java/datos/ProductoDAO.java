@@ -1,5 +1,6 @@
 package datos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import modelo.Producto;
+import modelo.Usuario;
 
 @Stateless
 public class ProductoDAO {
@@ -27,6 +29,27 @@ public class ProductoDAO {
 		em.remove(leer(codigo));
 	}
 	
+	public List<Producto> buscar(String nombre){
+		String jpql = "SELECT o FROM Producto o WHERE o.nombre LIKE '%' || :nom || '%' ";
+		Query query = em.createQuery(jpql,Producto.class);
+		query.setParameter("nom", nombre);
+		
+		
+		
+		List<Producto> productos = new ArrayList<Producto>();
+		try {
+			productos = query.getResultList();
+			if(productos!=null) {
+				System.out.println("hay "+productos.size()+" cosos");
+				return productos;
+			}else {
+				return new ArrayList<Producto>();
+			}
+		}catch(Exception e) {
+			return productos;
+		}
+	}
+	
 	public Producto leer(int codigo) {
 		Producto producto = em.find(Producto.class, codigo);
 		producto.getCategoria();
@@ -37,7 +60,6 @@ public class ProductoDAO {
 		String jpql = "SELECT o FROM Producto o";
 		Query query = em.createQuery(jpql, Producto.class);
 		List<Producto> productos = query.getResultList();
-		
 		
 		return productos;
 	}

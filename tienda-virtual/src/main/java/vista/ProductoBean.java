@@ -19,21 +19,29 @@ public class ProductoBean {
 	private Producto producto;
 	private List<Producto> lista;
 	private int codigo;
+	private String nomBuscar ;
+	private String nombree;
 	
 	@Inject
 	private ProductoDAO pDao;
 
 	@PostConstruct
 	public void init() {
-		
 		loadProducto();
 	}
 	
 	public void loadProducto() {
+		System.out.println("se llama a loadProducgto");
+		nomBuscar = "";
 		producto = new Producto();
 		producto.setCategoria(new Categoria());
 		this.codigo = 0;
+		
+		if(nombree == null || nombree.length() == 0) {
+			System.out.println("Entra a aux null");
 		lista = pDao.listar();
+		}
+		nombree = "";
 	}
 	
 	public String guardar() {
@@ -46,14 +54,32 @@ public class ProductoBean {
 		return "ProductoCRUD";
 	}
 	
+	public String buscar(String nombre) {
+		nombree = nombre;
+		this.lista = pDao.buscar(nomBuscar);
+		System.out.println("Se está buscando: "+nomBuscar);
+		System.out.println("llegan a buscar "+lista.size());
+		return null;
+	}
+	
 	public String eliminar(int codigo) {
 		pDao.borrar(codigo);
 		loadProducto();
 		return "ProductoCRUD";
 	}
 	
+
+
+
+	public String getNomBuscar() {
+		return nomBuscar;
+	}
+
+	public void setNomBuscar(String nomBuscar) {
+		this.nomBuscar = nomBuscar;
+	}
+
 	public String editar(int codigo) {
-		System.out.println("El codigo a Editar de producto es: "+codigo);
 		this.codigo = codigo;
 		this.producto = pDao.leer(codigo);
 		if (producto == null) {
@@ -62,8 +88,6 @@ public class ProductoBean {
 		}
 		return "CrearProducto";
 	}
-	
-	
 	
 	public Producto getProducto() {
 		return producto;

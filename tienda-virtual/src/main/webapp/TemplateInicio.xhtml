@@ -59,11 +59,9 @@
 	 	
 	 	
 	 	.columnass{
-	 		padding: 15px;
+	 		padding: 10px;
 	 	}
-	 	.tablas{
-	 		max-width: 500px;
-	 	}
+	 	
 	 </style>
 
 	</h:head>
@@ -121,17 +119,36 @@
 		</div>
 		
 		
-		<div>
+		<table>
+		<tr>
+		<td>
+		
+
+<h:panelGrid columns="2">
+
 	    <ui:insert name="buscar">
 	    </ui:insert>
+
+</h:panelGrid>	    
+
 	    
+	    </td>
+		<td>
+	      <div style="padding: 25px">
+	    <ui:insert name="botones">
+	    
+	    </ui:insert>
 	    </div>
+	    </td>
+	    </tr>
+	    </table>
+	    
+	    <br />
 	    
 	    
 	    
-	    
-	    
-	    <div class="tablas">
+	  
+	    <div class="tablas" >
 	    
 	    <ui:insert name="tabla">
 	    
@@ -139,15 +156,6 @@
 	    
 	    </div>
 	    
-	    
-	    
-	    
-	    
-	    <div>
-	    <ui:insert name="botones">
-	    
-	    </ui:insert>
-	    </div>
 	    
 	    
 	</div>

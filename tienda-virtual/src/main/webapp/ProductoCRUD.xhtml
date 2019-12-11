@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="TemplateInicio.xhtml">
 
@@ -10,11 +11,28 @@
 <h1>Productos</h1>
 </ui:define>
 
+
+<ui:define name="buscar">
+<h:form>
+
+
+
+<h:inputText id="campoBuscar"  value="#{productoBean.nomBuscar}" a:placeholder="Buscar">
+<f:ajax execute="@all" render="tablaProductos" listener="#{productoBean.buscar(productoBean.nomBuscar)}" event="keydown"/>
+</h:inputText>
+
+
+
+</h:form>
+</ui:define>
+
+
+
 <ui:define name="tabla">
 
-		<h:form>
+		<h:form  id="tablaProductos">
 		
-			<h:dataTable value="#{productoBean.lista}" var="producto">
+			<h:dataTable  value="#{productoBean.lista}" var="producto">
 			
 			<h:column class="columnass">
 					<f:facet name="header">Imagen</f:facet>
