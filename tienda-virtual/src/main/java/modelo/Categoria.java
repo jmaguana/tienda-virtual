@@ -30,7 +30,7 @@ public class Categoria {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria")
 	private List<Producto> productos;
-
+/*
 	@ManyToOne
 	@JoinColumn(name = "categoria_padre")
 	private Categoria categoria;
@@ -38,14 +38,7 @@ public class Categoria {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria_padre")
 	private List<Categoria> listaCategorias;
-	
-	public List<Categoria> getListaCategorias() {
-		return listaCategorias;
-	}
-
-	public void setListaCategorias(List<Categoria> listaCategorias) {
-		this.listaCategorias = listaCategorias;
-	}
+	*/
 
 	public List<Producto> getProductos() {
 		return productos;
@@ -53,14 +46,6 @@ public class Categoria {
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
 	}
 
 	public int getCodigo() {

@@ -22,6 +22,10 @@
 			<h:inputTextarea style="resize:none;" cols="50" rows="3" class="form-control" value="#{productoBean.producto.descripcion}" id="descripcion"/>
 			<h:message for="descripcion"/>
 			
+			<h:outputLabel value="Imagen:" for="imagen" />
+			<h:inputText class="form-control" value="#{productoBean.producto.imagen}" id="imagen"/>
+			<h:message for="descripcion"/>
+			
 			<h:outputLabel value="Precio:" for="precio" />
 			<h:inputText class="form-control" value="#{productoBean.producto.precio}" id="precio"/>
 			<h:message for="precio"/>
