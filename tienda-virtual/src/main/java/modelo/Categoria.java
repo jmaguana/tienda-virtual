@@ -95,6 +95,4 @@ public class Categoria {
 		this.imagen = imagen;
 	}
 
-	
-	
 }

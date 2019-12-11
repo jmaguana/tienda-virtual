@@ -6,45 +6,66 @@
 
 <ui:composition template="TemplateInicio.xhtml">
 
+<ui:define name="titulo">
+<h1>Productos</h1>
+</ui:define>
+
 <ui:define name="tabla">
 
 		<h:form>
 		
 			<h:dataTable value="#{productoBean.lista}" var="producto">
 			
-				<h:column>
+			<h:column class="columnass">
+					<f:facet name="header">Imagen</f:facet>
+					
+					<h:graphicImage value="#{producto.imagen}" width="80px" height="80px">
+					</h:graphicImage>
+
+				</h:column>
+			
+				<h:column class="columnass">
 					<f:facet name="header">Nombre</f:facet>
 					#{producto.nombre}
 				</h:column>
-				<h:column>
+				<h:column class="columnass">
 					<f:facet name="header">Descripcion</f:facet>
 					#{producto.descripcion}
 				</h:column>
-				<h:column>
+				<h:column class="columnass">
 					<f:facet name="header">Precio</f:facet>
 					#{producto.precio}
 				</h:column>
-				<h:column>
+				<h:column class="columnass">
 					<f:facet name="header">Categoría</f:facet>
 					#{producto.categoria.nombre}
 				</h:column>
-				<h:column>
+				<h:column class="columnass">
 					<f:facet name="header">Stock</f:facet>
 					#{producto.stock}
 				</h:column>
 				
 				<h:column>
-					<h:commandButton action="#{productoBean.editar(producto.codigo)}" value="editar" immediate="true"/>			
+				<f:facet name="header">Editar</f:facet>
+					<h:commandButton  class="btn btn-primary btn-modify" action="#{productoBean.editar(producto.codigo)}" value="editar" immediate="true"/>			
 				</h:column>
 				<h:column>
-					<h:commandButton action="#{productoBean.editar(producto.codigo)}" value="eliminar" immediate="true"/>			
+				<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton  class="btn btn-primary btn-modify" action="#{productoBean.eliminar(producto.codigo)}" value="eliminar" immediate="true"/>			
 				</h:column>
 			</h:dataTable>
 			
-			<h:commandButton action="CrearProducto" value="Crear Nuevo" immediate="true"/>
+			
 			
 		</h:form>
 </ui:define>
+
+<ui:define name="botones">
+<h:form>
+<h:commandButton class="btn btn-primary btn-modify" action="CrearProducto" value="Crear Nuevo" immediate="true"/>
+</h:form>
+</ui:define>
+
 </ui:composition>
 
 </html>

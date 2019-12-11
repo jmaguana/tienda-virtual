@@ -1,9 +1,12 @@
 package vista;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import datos.ProductoDAO;
@@ -11,6 +14,7 @@ import modelo.Categoria;
 import modelo.Producto;
 
 @ManagedBean
+@SessionScoped
 public class ProductoBean {
 	private Producto producto;
 	private List<Producto> lista;
@@ -21,12 +25,13 @@ public class ProductoBean {
 
 	@PostConstruct
 	public void init() {
-		producto = new Producto();
-		producto.setCategoria(new Categoria());
+		
 		loadProducto();
 	}
 	
 	public void loadProducto() {
+		producto = new Producto();
+		producto.setCategoria(new Categoria());
 		this.codigo = 0;
 		lista = pDao.listar();
 	}
@@ -48,10 +53,17 @@ public class ProductoBean {
 	}
 	
 	public String editar(int codigo) {
+		System.out.println("El codigo a Editar de producto es: "+codigo);
 		this.codigo = codigo;
 		this.producto = pDao.leer(codigo);
+		if (producto == null) {
+			loadProducto();
+			return "ProductoCRUD";
+		}
 		return "CrearProducto";
 	}
+	
+	
 	
 	public Producto getProducto() {
 		return producto;

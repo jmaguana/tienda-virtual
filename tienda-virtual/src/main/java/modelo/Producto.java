@@ -27,7 +27,6 @@ public class Producto {
 	@NotNull
 	private int stock;
 	
-	//EAGER trae inmediatamente
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria")
 	@NotNull

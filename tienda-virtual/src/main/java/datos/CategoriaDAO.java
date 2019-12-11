@@ -27,8 +27,8 @@ public class CategoriaDAO {
 	}
 	
 	public Categoria leer(int codigo) {
-		em.find(Categoria.class, codigo);
-		return null;
+		Categoria c = em.find(Categoria.class, codigo);
+		return c;
 	}
 	
 	public List<Categoria> listar(){

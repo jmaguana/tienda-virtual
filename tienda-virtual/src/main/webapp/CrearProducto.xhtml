@@ -6,26 +6,28 @@
 
 
 <ui:composition template="TemplateFormulario.xhtml">
-
+<ui:define name="titulo">
+<h1>Crear Producto</h1>
+</ui:define>
 <ui:define name="formulario">
 	
 	<h:form>
-	
+	<br />
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Nombre:" for="nombre" />
-			<h:inputText value="#{productoBean.producto.nombre}" id="nombre"/>
+			<h:inputText class="form-control" value="#{productoBean.producto.nombre}" id="nombre"/>
 			<h:message for="nombre"/>
 			
 			<h:outputLabel value="Descripción:" for="descripcion" />
-			<h:inputText value="#{productoBean.producto.descripcion}" id="descripcion"/>
+			<h:inputTextarea style="resize:none;" cols="50" rows="3" class="form-control" value="#{productoBean.producto.descripcion}" id="descripcion"/>
 			<h:message for="descripcion"/>
 			
 			<h:outputLabel value="Precio:" for="precio" />
-			<h:inputText value="#{productoBean.producto.precio}" id="precio"/>
+			<h:inputText class="form-control" value="#{productoBean.producto.precio}" id="precio"/>
 			<h:message for="precio"/>
 			
 			<h:outputLabel value="Stock:" for="stock" />
-			<h:inputText value="#{productoBean.producto.stock}" id="stock"/>
+			<h:inputText class="form-control" value="#{productoBean.producto.stock}" id="stock"/>
 			<h:message for="stock"/>
 			
 			<h:outputLabel value="Categoria:" for="categoria" />
@@ -35,9 +37,9 @@
 			<h:message for="categoria"/>
 			
 		</h:panelGrid>
-			
-			<h:commandButton action="ProductoCRUD" value="Cancelar" immediate="true"/>
-			<h:commandButton action="#{productoBean.guardar()}" value="Guardar"/>
+			<br />
+			<h:commandButton class="btn btn-primary btn-modify" action="ProductoCRUD" value="Cancelar" immediate="true"/>
+			<h:commandButton class="btn btn-primary btn-modify" action="#{productoBean.guardar()}" value="Guardar"/>
 			
 	</h:form>
 	</ui:define>
