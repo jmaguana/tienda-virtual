@@ -23,7 +23,6 @@ public class UsuarioBean {
 
 	@PostConstruct
 	public void init() {
-		
 		loadUsuarios();
 	}
 
@@ -51,13 +50,23 @@ public class UsuarioBean {
 		return "CrearUsuario";
 	}
 	
+	public String eliminar(String cedula) {
+		try {
+			
+			uDao.borrar(cedula);
+		}catch(Exception e) {
+			
+		}
+		loadUsuarios();
+		return "UsuariosCRUD";
+	}
+	
 	public String guardar() {
 		if(cedula==null) {
 			uDao.insertar(usuario);
 		}else {
 			uDao.actualizar(usuario);
 		}
-		
 		loadUsuarios();
 		return "UsuarioCRUD";
 	}

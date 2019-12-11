@@ -5,34 +5,34 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="TemplateFormulario.xhtml">
-
+<ui:define name="titulo">
+<h1>Crear Categoría</h1>
+</ui:define>
 <ui:define name="formulario">
 	
-
 		<h:form>
-			
+			<br />
 			<h:panelGrid columns="3">
 			
 			<h:outputLabel value="Nombre:" for="nombre" />
-			<h:inputText value="#{categoriaBean.categoria.nombre}" id="nombre"/>
+			<h:inputText class="form-control" value="#{categoriaBean.categoria.nombre}" id="nombre"/>
 			<h:message for="nombre"/>
 			
-			<h:outputLabel value="Descripción:" for="descripcion" />
-			<h:inputText value="#{categoriaBean.categoria.descripcion}" id="descripcion"/>
+			<h:outputLabel  value="Descripción:" for="descripcion" />
+			<h:inputTextarea style="resize:none;" cols="50" rows="3" class="form-control" value="#{categoriaBean.categoria.descripcion}" id="descripcion"/>
 			<h:message for="descripcion"/>
-			
+		
 			<h:outputLabel value="Imagen:" for="imagen" />
-			<h:inputText value="#{categoriaBean.categoria.imagen}" id="imagen"/>
+			<h:inputText class="form-control" value="#{categoriaBean.categoria.imagen}" id="imagen"/>
 			<h:message for="imagen"/>
 			
 		</h:panelGrid>
 				
-		<h:commandButton action="CategoriaCRUD" value="Cancelar" immediate="true"/>
-		<h:commandButton action="#{categoriaBean.guardar()}" value="Guardar"/>
-			
+		<br />
+		<h:commandButton class="btn btn-primary btn-modify" action="CategoriaCRUD" value="Cancelar" immediate="true"/>
+		<h:commandButton class="btn btn-primary btn-modify" action="#{categoriaBean.guardar()}" value="Guardar"/>
 				
 		</h:form>
-	
 	
 	</ui:define>
 </ui:composition>

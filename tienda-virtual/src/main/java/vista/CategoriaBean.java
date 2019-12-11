@@ -6,12 +6,14 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import datos.CategoriaDAO;
 import modelo.Categoria;
 
 @ManagedBean
+@SessionScoped
 public class CategoriaBean {
 	private Categoria categoria;
 	private List<Categoria> lista;
@@ -23,11 +25,11 @@ public class CategoriaBean {
 
 	@PostConstruct
 	public void init() {
-		categoria = new Categoria();
 		loadCategoria();
 	}
 	
 	public void loadCategoria() {
+		categoria = new Categoria();
 		this.codigo = 0;
 		lista = cDao.listar();
 	}
@@ -47,15 +49,29 @@ public class CategoriaBean {
 		}else {
 			cDao.actualizar(categoria);
 		}
-		
 		loadCategoria();
 		return "CategoriaCRUD";
 	}
 	
 	public String editar(int codigo) {
+		System.out.println("El codigo a Editar es: "+codigo);
 		this.codigo = codigo;
 		categoria = cDao.leer(codigo);
+		if(categoria == null) {
+			loadCategoria();
+			return "CategoriaCRUD";
+		}
 		return "CrearCategoria";
+	}
+	
+	public String eliminar(int codigo) {
+		try{
+			this.cDao.borrar(codigo);
+		}catch(Exception e) {
+			
+		}
+		loadCategoria();
+		return "CategoriaCRUD";
 	}
 	
 	public Categoria getCategoria() {
