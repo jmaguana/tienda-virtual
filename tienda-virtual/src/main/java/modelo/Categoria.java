@@ -22,6 +22,7 @@ public class Categoria {
 	@Id
 	@GeneratedValue
 	private int codigo;
+	
 	@NotNull
 	@NotEmpty
 	private String nombre;
@@ -30,7 +31,7 @@ public class Categoria {
 	
 	private String imagen;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria")
 	private List<Producto> productos;
 /*

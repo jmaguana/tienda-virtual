@@ -89,5 +89,13 @@ public class Producto {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio="
+				+ precio + ", stock=" + stock + ", imagen=" + imagen + "]";
+	}
+	//+ ", categoria=" + categoria.getNombre() 
+	
 	
 }

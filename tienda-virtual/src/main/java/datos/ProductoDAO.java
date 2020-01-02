@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import modelo.Categoria;
 import modelo.Producto;
 import modelo.Usuario;
 
@@ -34,8 +35,6 @@ public class ProductoDAO {
 		Query query = em.createQuery(jpql,Producto.class);
 		query.setParameter("nom", nombre);
 		
-		
-		
 		List<Producto> productos = new ArrayList<Producto>();
 		try {
 			productos = query.getResultList();
@@ -61,6 +60,10 @@ public class ProductoDAO {
 		Query query = em.createQuery(jpql, Producto.class);
 		List<Producto> productos = query.getResultList();
 		
+		/*
+		for	(Producto p:productos) {
+			p.setCategoria(new Categoria());
+		}*/
 		return productos;
 	}
 }
