@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import datos.CategoriaDAO;
 import modelo.Categoria;
+import negocio.ControladorWeb;
 
 @ManagedBean
 @SessionScoped
@@ -21,7 +22,7 @@ public class CategoriaBean {
 	private static Map<String,Object> listCategorias;
 	
 	@Inject
-	private CategoriaDAO cDao;
+	private ControladorWeb controlador;
 
 	@PostConstruct
 	public void init() {
@@ -31,7 +32,7 @@ public class CategoriaBean {
 	public void loadCategoria() {
 		categoria = new Categoria();
 		this.codigo = 0;
-		lista = cDao.listar();
+		lista = controlador.listarCategoria();
 	}
 	
 	public Map<String,Object> listaCategorias(){
@@ -45,9 +46,9 @@ public class CategoriaBean {
 	
 	public String guardar() {
 		if(codigo == 0) {
-			cDao.insertar(categoria);
+			controlador.insertarCategoria(categoria);
 		}else {
-			cDao.actualizar(categoria);
+			controlador.actualizarCategoria(categoria);
 		}
 		loadCategoria();
 		return "CategoriaCRUD";
@@ -56,7 +57,7 @@ public class CategoriaBean {
 	public String editar(int codigo) {
 		System.out.println("El codigo a Editar es: "+codigo);
 		this.codigo = codigo;
-		categoria = cDao.leer(codigo);
+		categoria = controlador.leerCategoria(codigo);
 		if(categoria == null) {
 			loadCategoria();
 			return "CategoriaCRUD";
@@ -66,7 +67,7 @@ public class CategoriaBean {
 	
 	public String eliminar(int codigo) {
 		try{
-			this.cDao.borrar(codigo);
+			controlador.borrarCategoria(codigo);
 		}catch(Exception e) {
 			
 		}

@@ -13,18 +13,19 @@ import javax.ws.rs.core.MediaType;
 import datos.ProductoDAO;
 import modelo.Categoria;
 import modelo.Producto;
+import negocio.ControladorWeb;
 
 @Path("/productos")
 public class ProductosService {
 	
 	@Inject
-	private ProductoDAO pON;
+	private ControladorWeb controladorWeb;
 
 	@GET
 	@Path("/listar")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Producto> getProductos(){
-		List<Producto> productos = pON.listar();
+		List<Producto> productos = controladorWeb.listarProducto();
 		for(Producto p:productos) {
 			p.getCategoria().setProductos(new ArrayList<Producto>());
 		}
@@ -35,7 +36,7 @@ public class ProductosService {
 	@Path("/buscar/{nombre}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Producto> buscarProducto(@PathParam("nombre") String nombre){
-		List<Producto> productos = pON.buscar(nombre);
+		List<Producto> productos = controladorWeb.buscarProducto(nombre);
 		for(Producto p:productos) {
 			p.getCategoria().setProductos(new ArrayList<Producto>());
 		}

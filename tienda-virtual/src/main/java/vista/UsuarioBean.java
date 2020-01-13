@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import datos.UsuarioDAO;
 import modelo.Usuario;
+import negocio.ControladorWeb;
 
 @ManagedBean
 @SessionScoped
@@ -19,7 +20,7 @@ public class UsuarioBean {
 	private String cedula;
 	
 	@Inject
-	private UsuarioDAO uDao;
+	private ControladorWeb controlador;
 
 	@PostConstruct
 	public void init() {
@@ -29,7 +30,7 @@ public class UsuarioBean {
 	public void loadUsuarios() {
 		usuario = new Usuario();
 		this.cedula = null;
-		lista = uDao.listar();
+		lista = controlador.listarUsuarios();
 	}
 	
 	public Usuario getUsuario() {
@@ -42,7 +43,7 @@ public class UsuarioBean {
 	
 	public String editar(String cedula) {
 		this.cedula = cedula;
-		usuario = uDao.leer(cedula);
+		usuario = controlador.leerUsuario(cedula);
 		if(usuario == null) {
 			loadUsuarios();
 			return "UsuarioCRUD";
@@ -53,7 +54,7 @@ public class UsuarioBean {
 	public String eliminar(String cedula) {
 		try {
 			
-			uDao.borrar(cedula);
+			controlador.borrarUsuario(cedula);
 		}catch(Exception e) {
 			
 		}
@@ -63,9 +64,9 @@ public class UsuarioBean {
 	
 	public String guardar() {
 		if(cedula==null) {
-			uDao.insertar(usuario);
+			controlador.insertarUsuario(usuario);
 		}else {
-			uDao.actualizar(usuario);
+			controlador.actualizarUsuario(usuario);
 		}
 		loadUsuarios();
 		return "UsuarioCRUD";

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import datos.ProductoDAO;
 import modelo.Categoria;
 import modelo.Producto;
+import negocio.ControladorWeb;
 
 @ManagedBean
 @SessionScoped
@@ -23,7 +24,7 @@ public class ProductoBean {
 	private String nombree;
 	
 	@Inject
-	private ProductoDAO pDao;
+	private ControladorWeb controlador;
 
 	@PostConstruct
 	public void init() {
@@ -39,16 +40,16 @@ public class ProductoBean {
 		
 		if(nombree == null || nombree.length() == 0) {
 			System.out.println("Entra a aux null");
-		lista = pDao.listar();
+		lista = controlador.listarProducto();
 		}
 		nombree = "";
 	}
 	
 	public String guardar() {
 		if(codigo == 0) {
-			pDao.insertar(producto);
+			controlador.insertarProducto(producto);
 		}else {
-			pDao.actualizar(producto);
+			controlador.actualizarProducto(producto);
 		}
 		loadProducto();
 		return "ProductoCRUD";
@@ -56,21 +57,18 @@ public class ProductoBean {
 	
 	public String buscar(String nombre) {
 		nombree = nombre;
-		this.lista = pDao.buscar(nomBuscar);
+		this.lista = controlador.buscarProducto(nombre);
 		System.out.println("Se está buscando: "+nomBuscar);
 		System.out.println("llegan a buscar "+lista.size());
 		return null;
 	}
 	
 	public String eliminar(int codigo) {
-		pDao.borrar(codigo);
+		controlador.borrarProducto(codigo);
 		loadProducto();
 		return "ProductoCRUD";
 	}
 	
-
-
-
 	public String getNomBuscar() {
 		return nomBuscar;
 	}
@@ -81,7 +79,7 @@ public class ProductoBean {
 
 	public String editar(int codigo) {
 		this.codigo = codigo;
-		this.producto = pDao.leer(codigo);
+		this.producto = controlador.leerProducto(codigo);
 		if (producto == null) {
 			loadProducto();
 			return "ProductoCRUD";

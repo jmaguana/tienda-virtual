@@ -1,0 +1,29 @@
+package modelo;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Compra {
+ 
+	@Id
+	private int id;
+	
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@JoinColumn(name = "compra_id")
+	private List<ProductoVendido> listaProductos;
+	
+	private double total;
+	
+	private Date Fecha;
+	
+	
+	
+}
