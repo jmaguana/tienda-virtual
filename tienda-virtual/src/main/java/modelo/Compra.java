@@ -25,6 +25,38 @@ public class Compra {
 	private double total;
 	
 	private Date Fecha;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<ProductoVendido> getListaProductos() {
+		return listaProductos;
+	}
+
+	public void setListaProductos(List<ProductoVendido> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public Date getFecha() {
+		return Fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		Fecha = fecha;
+	}
 	
 	
 	

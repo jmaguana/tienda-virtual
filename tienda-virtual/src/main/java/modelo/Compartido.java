@@ -29,5 +29,38 @@ public class Compartido {
 	@JoinColumn(name = "recibe")
 	@NotNull
 	private Cliente clienteRecibe;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public ProductoStock getProducto() {
+		return producto;
+	}
+
+	public void setProducto(ProductoStock producto) {
+		this.producto = producto;
+	}
+
+	public Cliente getClienteEnvia() {
+		return clienteEnvia;
+	}
+
+	public void setClienteEnvia(Cliente clienteEnvia) {
+		this.clienteEnvia = clienteEnvia;
+	}
+
+	public Cliente getClienteRecibe() {
+		return clienteRecibe;
+	}
+
+	public void setClienteRecibe(Cliente clienteRecibe) {
+		this.clienteRecibe = clienteRecibe;
+	}
+	
 	
 }

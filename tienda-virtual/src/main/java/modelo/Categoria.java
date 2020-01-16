@@ -34,15 +34,6 @@ public class Categoria {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria")
 	private List<ProductoStock> productos;
-/*
-	@ManyToOne
-	@JoinColumn(name = "categoria_padre")
-	private Categoria categoria;
-	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "categoria_padre")
-	private List<Categoria> listaCategorias;
-	*/
 
 	public List<ProductoStock> getProductos() {
 		return productos;

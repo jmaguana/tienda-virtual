@@ -75,6 +75,7 @@ public class Usuario {
 		this.pass = pass;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email

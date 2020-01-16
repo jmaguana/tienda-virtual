@@ -3,6 +3,7 @@ package modelo;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+//@DiscriminatorValue(value="stock")
 @Entity
 public class ProductoStock extends Producto{
 	
@@ -46,6 +48,23 @@ public class ProductoStock extends Producto{
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+
+	public List<Cliente> getVotos() {
+		return votos;
+	}
+
+	public void setVotos(List<Cliente> votos) {
+		this.votos = votos;
+	}
+
+	public List<ProductoVendido> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(List<ProductoVendido> ventas) {
+		this.ventas = ventas;
 	}
 
 	@Override

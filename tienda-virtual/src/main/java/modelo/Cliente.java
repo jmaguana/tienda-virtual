@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -28,10 +27,10 @@ public class Cliente {
 	
 	private String apellidos;
 	
-	
 	private Date fechaNacimiento;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente")
 	private List<CarritoDetalle> carrito;
 	
 	@NotNull
@@ -54,6 +53,94 @@ public class Cliente {
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "recivbe")
 	private List<Compartido> listaRecibido;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public List<CarritoDetalle> getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(List<CarritoDetalle> carrito) {
+		this.carrito = carrito;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
+	public List<ProductoStock> getListaVotos() {
+		return listaVotos;
+	}
+
+	public void setListaVotos(List<ProductoStock> listaVotos) {
+		this.listaVotos = listaVotos;
+	}
+
+	public List<Compra> getListaCompras() {
+		return listaCompras;
+	}
+
+	public void setListaCompras(List<Compra> listaCompras) {
+		this.listaCompras = listaCompras;
+	}
+
+	public List<Compartido> getListaEnviado() {
+		return listaEnviado;
+	}
+
+	public void setListaEnviado(List<Compartido> listaEnviado) {
+		this.listaEnviado = listaEnviado;
+	}
+
+	public List<Compartido> getListaRecibido() {
+		return listaRecibido;
+	}
+
+	public void setListaRecibido(List<Compartido> listaRecibido) {
+		this.listaRecibido = listaRecibido;
+	}
 	
 	
 }
