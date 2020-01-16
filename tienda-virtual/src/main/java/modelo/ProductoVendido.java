@@ -7,7 +7,5 @@ import javax.persistence.Id;
 public class ProductoVendido extends Producto{
 	
 	private int cantidad;
-	
-	private double total;
 
 }

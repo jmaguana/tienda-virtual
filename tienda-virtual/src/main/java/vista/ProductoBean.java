@@ -12,13 +12,14 @@ import javax.inject.Inject;
 import datos.ProductoDAO;
 import modelo.Categoria;
 import modelo.Producto;
+import modelo.ProductoStock;
 import negocio.ControladorWeb;
 
 @ManagedBean
 @SessionScoped
 public class ProductoBean {
-	private Producto producto;
-	private List<Producto> lista;
+	private ProductoStock producto;
+	private List<ProductoStock> lista;
 	private int codigo;
 	private String nomBuscar ;
 	private String nombree;
@@ -34,7 +35,7 @@ public class ProductoBean {
 	public void loadProducto() {
 		System.out.println("se llama a loadProducgto");
 		nomBuscar = "";
-		producto = new Producto();
+		producto = new ProductoStock();
 		producto.setCategoria(new Categoria());
 		this.codigo = 0;
 		
@@ -91,15 +92,15 @@ public class ProductoBean {
 		return producto;
 	}
 
-	public void setProducto(Producto producto) {
+	public void setProducto(ProductoStock producto) {
 		this.producto = producto;
 	}
 
-	public List<Producto> getLista() {
+	public List<ProductoStock> getLista() {
 		return lista;
 	}
 
-	public void setLista(List<Producto> lista) {
+	public void setLista(List<ProductoStock> lista) {
 		this.lista = lista;
 	}
 

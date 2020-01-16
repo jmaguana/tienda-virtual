@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import datos.ProductoDAO;
 import modelo.Categoria;
 import modelo.Producto;
+import modelo.ProductoStock;
 import negocio.ControladorWeb;
 
 @Path("/productos")
@@ -24,10 +25,10 @@ public class ProductosService {
 	@GET
 	@Path("/listar")
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Producto> getProductos(){
-		List<Producto> productos = controladorWeb.listarProducto();
-		for(Producto p:productos) {
-			p.getCategoria().setProductos(new ArrayList<Producto>());
+	public List<ProductoStock> getProductos(){
+		List<ProductoStock> productos = controladorWeb.listarProducto();
+		for(ProductoStock p:productos) {
+			p.getCategoria().setProductos(new ArrayList<ProductoStock>());
 		}
 		return productos;
 	}
@@ -35,10 +36,10 @@ public class ProductosService {
 	@GET
 	@Path("/buscar/{nombre}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Producto> buscarProducto(@PathParam("nombre") String nombre){
-		List<Producto> productos = controladorWeb.buscarProducto(nombre);
-		for(Producto p:productos) {
-			p.getCategoria().setProductos(new ArrayList<Producto>());
+	public List<ProductoStock> buscarProducto(@PathParam("nombre") String nombre){
+		List<ProductoStock> productos = controladorWeb.buscarProducto(nombre);
+		for(ProductoStock p:productos) {
+			p.getCategoria().setProductos(new ArrayList<ProductoStock>());
 		}
 		return productos;
 	}

@@ -33,7 +33,7 @@ public class Categoria {
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria")
-	private List<Producto> productos;
+	private List<ProductoStock> productos;
 /*
 	@ManyToOne
 	@JoinColumn(name = "categoria_padre")
@@ -44,11 +44,11 @@ public class Categoria {
 	private List<Categoria> listaCategorias;
 	*/
 
-	public List<Producto> getProductos() {
+	public List<ProductoStock> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(List<Producto> productos) {
+	public void setProductos(List<ProductoStock> productos) {
 		this.productos = productos;
 	}
 

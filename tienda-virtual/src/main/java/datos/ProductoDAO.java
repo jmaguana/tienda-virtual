@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import modelo.Categoria;
 import modelo.Producto;
+import modelo.ProductoStock;
 import modelo.Usuario;
 
 @Stateless
@@ -18,11 +19,11 @@ public class ProductoDAO {
 	@Inject
 	private EntityManager em;
 	
-	public void insertar(Producto producto) {
+	public void insertar(ProductoStock producto) {
 		em.persist(producto);
 	}
 	
-	public void actualizar(Producto producto) {
+	public void actualizar(ProductoStock producto) {
 		em.merge(producto);
 	}
 	
@@ -30,40 +31,35 @@ public class ProductoDAO {
 		em.remove(leer(codigo));
 	}
 	
-	public List<Producto> buscar(String nombre){
-		String jpql = "SELECT o FROM Producto o WHERE o.nombre LIKE '%' || :nom || '%' ";
-		Query query = em.createQuery(jpql,Producto.class);
+	public List<ProductoStock> buscar(String nombre){
+		String jpql = "SELECT o FROM ProductoStock o WHERE o.nombre LIKE '%' || :nom || '%' ";
+		Query query = em.createQuery(jpql,ProductoStock.class);
 		query.setParameter("nom", nombre);
 		
-		List<Producto> productos = new ArrayList<Producto>();
+		List<ProductoStock> productos = new ArrayList<ProductoStock>();
 		try {
 			productos = query.getResultList();
 			if(productos!=null) {
 				System.out.println("hay "+productos.size()+" cosos");
 				return productos;
 			}else {
-				return new ArrayList<Producto>();
+				return new ArrayList<ProductoStock>();
 			}
 		}catch(Exception e) {
 			return productos;
 		}
 	}
 	
-	public Producto leer(int codigo) {
-		Producto producto = em.find(Producto.class, codigo);
+	public ProductoStock leer(int codigo) {
+		ProductoStock producto = em.find(ProductoStock.class, codigo);
 		producto.getCategoria();
 		return producto;
 	}
 	
-	public List<Producto> listar(){
+	public List<ProductoStock> listar(){
 		String jpql = "SELECT o FROM Producto o";
-		Query query = em.createQuery(jpql, Producto.class);
-		List<Producto> productos = query.getResultList();
-		
-		/*
-		for	(Producto p:productos) {
-			p.setCategoria(new Categoria());
-		}*/
+		Query query = em.createQuery(jpql, ProductoStock.class);
+		List<ProductoStock> productos = query.getResultList();
 		return productos;
 	}
 }

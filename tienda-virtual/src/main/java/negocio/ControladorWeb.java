@@ -10,6 +10,7 @@ import datos.ProductoDAO;
 import datos.UsuarioDAO;
 import modelo.Categoria;
 import modelo.Producto;
+import modelo.ProductoStock;
 import modelo.Usuario;
 
 @Stateless
@@ -44,19 +45,19 @@ public class ControladorWeb {
 		categoriaDao.borrar(codigo);
 	}
 	
-	public List<Producto> listarProducto(){
+	public List<ProductoStock> listarProducto(){
 		return productoDao.listar();
 	}
 	
-	public void insertarProducto(Producto producto) {
+	public void insertarProducto(ProductoStock producto) {
 		productoDao.insertar(producto);
 	}
 	
-	public void actualizarProducto(Producto producto) {
+	public void actualizarProducto(ProductoStock producto) {
 		productoDao.actualizar(producto);
 	}
 	
-	public List<Producto> buscarProducto(String nombre) {
+	public List<ProductoStock> buscarProducto(String nombre) {
 		return productoDao.buscar(nombre);
 	}
 	
@@ -64,7 +65,7 @@ public class ControladorWeb {
 		productoDao.borrar(codigo);
 	}
 	
-	public Producto leerProducto(int codigo) {
+	public ProductoStock leerProducto(int codigo) {
 		return productoDao.leer(codigo);
 	}
 	

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Cliente {
-	
+	 
 	@Id
 	@NotNull
 	@Column(length = 10)
@@ -28,21 +28,33 @@ public class Cliente {
 	
 	private String apellidos;
 	
+	
 	private Date fechaNacimiento;
 
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	private List<CarritoDetalle> carrito;
 	
+	@NotNull
 	private String correo;
 	
 	@NotNull
 	private String contrasenia;
 	
 	@ManyToMany(mappedBy = "votos")
-	private List<Producto> listaVotos;
-	
+	private List<ProductoStock> listaVotos;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_id")
 	private List<Compra> listaCompras;
+	
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "envia")
+	private List<Compartido> listaEnviado;
+	
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "recivbe")
+	private List<Compartido> listaRecibido;
+	
 	
 }
 
