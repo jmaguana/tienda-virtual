@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -25,6 +26,7 @@ public class ProductosService {
 	@GET
 	@Path("/listar")
 	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes("application/json")
 	public List<ProductoStock> getProductos(){
 		List<ProductoStock> productos = controladorWeb.listarProducto();
 		for(ProductoStock p:productos) {

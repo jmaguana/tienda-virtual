@@ -25,6 +25,8 @@ public class Cliente {
 	
 	private String nombre;
 	
+	private String imagen;
+	
 	private String apellidos;
 	
 	private Date fechaNacimiento;
@@ -140,6 +142,22 @@ public class Cliente {
 
 	public void setListaRecibido(List<Compartido> listaRecibido) {
 		this.listaRecibido = listaRecibido;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", apellidos=" + apellidos
+				+ ", fechaNacimiento=" + fechaNacimiento + ", carrito=" + carrito + ", correo=" + correo
+				+ ", contrasenia=" + contrasenia + ", listaVotos=" + listaVotos + ", listaCompras=" + listaCompras
+				+ ", listaEnviado=" + listaEnviado + ", listaRecibido=" + listaRecibido + "]";
 	}
 	
 	

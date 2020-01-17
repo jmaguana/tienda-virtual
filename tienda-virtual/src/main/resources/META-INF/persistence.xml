@@ -27,8 +27,8 @@
          can find it in the source at src/main/webapp/WEB-INF/tienda-virtual-ds.xml -->
       <jta-data-source>java:jboss/datasources/tienda_virtual-ds</jta-data-source>
       <properties>
-         <!-- Properties for Hibernate  create-drop-->
-         <property name="hibernate.hbm2ddl.auto" value="create" />
+         <!-- Properties for Hibernate  -->
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="true" />
       </properties>
    </persistence-unit>

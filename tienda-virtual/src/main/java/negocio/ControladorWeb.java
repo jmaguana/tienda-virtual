@@ -81,8 +81,12 @@ public class ControladorWeb {
 		usuariosDao.borrar(cedula);
 	}
 	
-	public void insertarUsuario(Usuario usuario) {
-		usuariosDao.insertar(usuario);
+	public void insertarUsuario(Usuario usuario)  {
+		try{
+			usuariosDao.insertar(usuario);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	public void actualizarUsuario(Usuario usuario) {

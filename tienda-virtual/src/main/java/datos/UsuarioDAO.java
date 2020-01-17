@@ -15,7 +15,7 @@ public class UsuarioDAO {
 	@Inject
 	private EntityManager em;
 	
-	public void insertar(Usuario usuario) {
+	public void insertar(Usuario usuario) throws Exception {
 		em.persist(usuario);
 	}
 	
