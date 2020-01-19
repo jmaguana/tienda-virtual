@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class ClienteInfo {
 
+	private int codigo;
+	
 	private String nombre;
 
 	private String imagen;
@@ -13,6 +15,14 @@ public class ClienteInfo {
 	private Date fechaNacimiento;
 
 	private String correo;
+	
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public String getNombre() {
 		return nombre;

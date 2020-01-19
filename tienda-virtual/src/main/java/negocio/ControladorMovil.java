@@ -26,4 +26,8 @@ public class ControladorMovil {
 	public List<ProductoStock> listarProductos() throws Exception{
 		return productoDao.listarProductos();
 	}
+	
+	public ProductoStock buscarProducto(int codigo) {
+		return productoDao.leer(codigo);
+	}	
 }

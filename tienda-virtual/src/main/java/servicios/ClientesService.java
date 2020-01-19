@@ -28,6 +28,7 @@ public class ClientesService {
 			List<ClienteInfo> clientesInfo = new ArrayList<>();
 			for(Cliente c: clientes) {
 				ClienteInfo clienteInfo = new ClienteInfo();
+				clienteInfo.setCodigo(c.getId());
 				clienteInfo.setNombre(c.getNombre());
 				clienteInfo.setApellidos(c.getApellidos());
 				clienteInfo.setImagen(c.getImagen());

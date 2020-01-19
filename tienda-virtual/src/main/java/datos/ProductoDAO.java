@@ -52,7 +52,10 @@ public class ProductoDAO {
 	
 	public ProductoStock leer(int codigo) {
 		ProductoStock producto = em.find(ProductoStock.class, codigo);
-		producto.getCategoria();
+		producto.getNombre();
+		producto.getDescripcion();
+		producto.getImagenes();
+		producto.getPrecio();
 		return producto;
 	}
 	

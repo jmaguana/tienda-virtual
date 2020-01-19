@@ -2,6 +2,8 @@ package modelo_servicio;
 
 public class ProductoInfo {
 
+	private int codigo;
+	
 	private String nombre;
 
 	private String descripcion;
@@ -13,6 +15,18 @@ public class ProductoInfo {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	public int getCodigo() {
+		return codigo;
+	}
+
+
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
