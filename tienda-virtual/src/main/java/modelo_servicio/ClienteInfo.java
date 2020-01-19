@@ -1,16 +1,15 @@
 package modelo_servicio;
 
 import java.util.Date;
-import java.util.List;
 
 public class ClienteInfo {
 
-private String nombre;
-	
+	private String nombre;
+
 	private String imagen;
-	
+
 	private String apellidos;
-	
+
 	private Date fechaNacimiento;
 
 	private String correo;
@@ -54,6 +53,5 @@ private String nombre;
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	
-	
+
 }

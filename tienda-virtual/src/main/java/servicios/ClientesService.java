@@ -9,11 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import modelo.CarritoDetalle;
 import modelo.Cliente;
-import modelo.Compartido;
-import modelo.Compra;
-import modelo.ProductoStock;
 import modelo_servicio.ClienteInfo;
 import negocio.ControladorMovil;
 

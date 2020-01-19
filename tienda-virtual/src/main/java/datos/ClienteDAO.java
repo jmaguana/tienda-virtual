@@ -1,6 +1,5 @@
 package datos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import modelo.Cliente;
-import modelo.CarritoDetalle;
 
 @Stateless
 public class ClienteDAO {

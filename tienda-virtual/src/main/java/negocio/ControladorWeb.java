@@ -9,7 +9,6 @@ import datos.CategoriaDAO;
 import datos.ProductoDAO;
 import datos.UsuarioDAO;
 import modelo.Categoria;
-import modelo.Producto;
 import modelo.ProductoStock;
 import modelo.Usuario;
 
@@ -46,7 +45,7 @@ public class ControladorWeb {
 	}
 	
 	public List<ProductoStock> listarProducto(){
-		return productoDao.listar();
+		return productoDao.listarProductos();
 	}
 	
 	public void insertarProducto(ProductoStock producto) {

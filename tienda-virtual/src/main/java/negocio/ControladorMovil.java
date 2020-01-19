@@ -6,7 +6,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.ClienteDAO;
+import datos.ProductoDAO;
 import modelo.Cliente;
+import modelo.ProductoStock;
 
 @Stateless
 public class ControladorMovil {
@@ -14,7 +16,14 @@ public class ControladorMovil {
 	@Inject
 	private ClienteDAO clienteDao;
 	
+	@Inject
+	private ProductoDAO productoDao;
+	
 	public List<Cliente> listarClientes() throws Exception{
 		return clienteDao.listar();
+	}
+	
+	public List<ProductoStock> listarProductos() throws Exception{
+		return productoDao.listarProductos();
 	}
 }

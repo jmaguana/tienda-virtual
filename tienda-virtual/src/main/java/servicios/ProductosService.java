@@ -4,46 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import datos.ProductoDAO;
-import modelo.Categoria;
 import modelo.Producto;
 import modelo.ProductoStock;
-import negocio.ControladorWeb;
+import modelo_servicio.ProductoInfo;
+import negocio.ControladorMovil;
 
 @Path("/productos")
 public class ProductosService {
 	
 	@Inject
-	private ControladorWeb controladorWeb;
+	private ControladorMovil controladorMovil;
 
 	@GET
 	@Path("/listar")
 	@Produces({MediaType.APPLICATION_JSON})
-	@Consumes("application/json")
-	public List<ProductoStock> getProductos(){
-		List<ProductoStock> productos = controladorWeb.listarProducto();
-		for(ProductoStock p:productos) {
-			p.getCategoria().setProductos(new ArrayList<ProductoStock>());
+	public List<ProductoInfo> getProductos(){
+		try {
+			List<ProductoStock> productos = controladorMovil.listarProductos();
+			List<ProductoInfo> productosInfo = new ArrayList<>();
+			for(ProductoStock p : productos) {
+				ProductoInfo productoInfo = new ProductoInfo();
+				productoInfo.setNombre(p.getNombre());
+				productoInfo.setDescripcion(p.getDescripcion());
+				productoInfo.setImagenes(p.getImagenes());
+				productoInfo.setPrecio(p.getPrecio());
+				productosInfo.add(productoInfo);
+			}
+			return productosInfo;
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			return new ArrayList<ProductoInfo>();
 		}
-		return productos;
 	}
-	
-	@GET
-	@Path("/buscar/{nombre}")
-	@Produces({MediaType.APPLICATION_JSON})
-	public List<ProductoStock> buscarProducto(@PathParam("nombre") String nombre){
-		List<ProductoStock> productos = controladorWeb.buscarProducto(nombre);
-		for(ProductoStock p:productos) {
-			p.getCategoria().setProductos(new ArrayList<ProductoStock>());
-		}
-		return productos;
-	}
-
 }
