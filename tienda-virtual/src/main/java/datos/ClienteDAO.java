@@ -1,6 +1,5 @@
 package datos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,9 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import modelo.CarritoDetalle;
 import modelo.Cliente;
-import modelo.ProductoStock;
-import modelo.Usuario;
 
 @Stateless
 public class ClienteDAO {
@@ -40,5 +38,14 @@ public class ClienteDAO {
 		}catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public List<CarritoDetalle> listarProductosCarrito(int id){
+		Cliente cliente = new Cliente();
+		String jpql = "SELECT c FROM cliente c WHERE c.id = :id";
+		Query query = em.createQuery(jpql, Cliente.class);
+		query.setParameter("id",id);
+		cliente = (Cliente) query.getSingleResult();
+		return cliente.getCarrito();
 	}
 }

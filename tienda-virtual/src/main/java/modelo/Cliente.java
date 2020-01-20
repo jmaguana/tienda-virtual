@@ -159,8 +159,4 @@ public class Cliente {
 				+ ", contrasenia=" + contrasenia + ", listaVotos=" + listaVotos + ", listaCompras=" + listaCompras
 				+ ", listaEnviado=" + listaEnviado + ", listaRecibido=" + listaRecibido + "]";
 	}
-	
-	
 }
-
-

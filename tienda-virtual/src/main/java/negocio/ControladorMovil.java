@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import datos.ClienteDAO;
 import datos.ProductoDAO;
+import modelo.CarritoDetalle;
 import modelo.Cliente;
 import modelo.ProductoStock;
 
@@ -35,4 +36,8 @@ public class ControladorMovil {
 	public ProductoStock buscarProducto(int codigo) {
 		return productoDao.leer(codigo);
 	}	
+	
+	public List<CarritoDetalle> listarProductoCarrito(int codigo) throws Exception{
+		return clienteDao.listarProductosCarrito(codigo);
+	}
 }

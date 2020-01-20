@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import modelo.Cliente;
 import modelo.ProductoStock;
 
 @Stateless
