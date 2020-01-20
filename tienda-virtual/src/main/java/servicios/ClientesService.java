@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -40,6 +41,26 @@ public class ClientesService {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return new ArrayList<ClienteInfo>();
+		}
+	}
+	
+	@GET
+	@Path("Login/{correo}/{contrasenia}")
+	@Produces("application/json")
+	public ClienteInfo login(@PathParam("correo") String correo, @PathParam("contrasenia") String contrasenia) {
+		try {
+			Cliente c = controladorMovil.login(correo, contrasenia);
+			ClienteInfo ci = new ClienteInfo();
+			ci.setCodigo(c.getId());
+			ci.setNombre(c.getNombre());
+			ci.setApellidos(c.getApellidos());
+			ci.setCorreo(c.getCorreo());
+			ci.setImagen(c.getImagen());
+			ci.setFechaNacimiento(c.getFechaNacimiento());
+			return ci;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
 	}
 }

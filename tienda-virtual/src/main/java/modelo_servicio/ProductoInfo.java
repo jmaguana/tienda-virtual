@@ -11,6 +11,8 @@ public class ProductoInfo {
 	private String imagenes;
 
 	private double precio;
+	
+	private int votos;
 
 	public String getNombre() {
 		return nombre;
@@ -54,6 +56,14 @@ public class ProductoInfo {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+
+	public int getVotos() {
+		return votos;
+	}
+
+	public void setVotos(int votos) {
+		this.votos = votos;
 	}
 
 	@Override

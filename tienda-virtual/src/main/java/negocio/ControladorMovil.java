@@ -19,6 +19,11 @@ public class ControladorMovil {
 	@Inject
 	private ProductoDAO productoDao;
 	
+	public Cliente login(String correo, String contrasenia) {
+		return clienteDao.login(correo, contrasenia);
+	}
+	
+	
 	public List<Cliente> listarClientes() throws Exception{
 		return clienteDao.listar();
 	}
