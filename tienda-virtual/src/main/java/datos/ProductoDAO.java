@@ -61,6 +61,9 @@ public class ProductoDAO {
 		String jpql = "SELECT o FROM ProductoStock o";
 		Query query = em.createQuery(jpql, ProductoStock.class);
 		List<ProductoStock> productos = query.getResultList();
+		for(ProductoStock p:productos) {
+			p.getVotos().size();
+		}
 		return productos;
 	}
 	
