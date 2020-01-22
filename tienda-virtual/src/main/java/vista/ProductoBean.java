@@ -6,10 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import datos.ProductoDAO;
 import modelo.Categoria;
 import modelo.Producto;
 import modelo.ProductoStock;

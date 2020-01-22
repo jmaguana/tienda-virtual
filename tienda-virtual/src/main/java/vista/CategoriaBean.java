@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import datos.CategoriaDAO;
 import modelo.Categoria;
 import negocio.ControladorWeb;
 

@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import datos.UsuarioDAO;
 import modelo.Usuario;
 import negocio.ControladorWeb;
 
