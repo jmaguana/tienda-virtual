@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -11,6 +13,7 @@ import modelo.CarritoDetalle;
 import modelo.Cliente;
 import modelo.Compra;
 import modelo.ProductoStock;
+import modelo.ProductoVendido;
 
 @Stateless
 public class ControladorMovil {
@@ -74,5 +77,31 @@ public class ControladorMovil {
 			cd.setCantidad(cantidad);
 			c.getCarrito().add(cd);
 			clienteDao.actualizar(c);
+	}
+	
+	public void generarCompra(int id) throws Exception{
+		double total = 0;
+		Cliente c = clienteDao.leer(id);
+		Compra compra = new Compra();
+		compra.setFecha(new Date());
+		compra.setListaProductos(new ArrayList<ProductoVendido>());
+		for(CarritoDetalle carrito : c.getCarrito()) {
+			ProductoVendido pv = new ProductoVendido();
+			pv.setCantidad(carrito.getCantidad());
+			pv.setDescripcion(carrito.getProducto().getDescripcion());
+			pv.setImagenes(carrito.getProducto().getImagenes());
+			pv.setNombre(carrito.getProducto().getNombre());
+			pv.setPrecio(carrito.getProducto().getPrecio());
+			compra.getListaProductos().add(pv);
+			total += (pv.getCantidad()*pv.getPrecio());
+		}
+		compra.setTotal(total);
+		if(c.getListaCompras() !=  null) {
+		c.getListaCompras().add(compra);
+		}else {
+			c.setListaCompras(new ArrayList<Compra>());
+			c.getListaCompras().add(compra);
+		}
+		clienteDao.actualizar(c);
 	}
 }

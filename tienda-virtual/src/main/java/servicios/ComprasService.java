@@ -19,7 +19,7 @@ public class ComprasService {
 	
 	@Inject
 	private ControladorMovil controladorMovil;
-
+	
 	@GET
 	@Path("/listar/{codigoCliente}")
 	@Produces({ MediaType.APPLICATION_JSON })

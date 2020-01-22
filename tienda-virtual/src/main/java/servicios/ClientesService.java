@@ -45,7 +45,7 @@ public class ClientesService {
 	}
 	
 	@GET
-	@Path("Login/{correo}/{contrasenia}")
+	@Path("login/{correo}/{contrasenia}")
 	@Produces("application/json")
 	public ClienteInfo login(@PathParam("correo") String correo, @PathParam("contrasenia") String contrasenia) {
 		try {

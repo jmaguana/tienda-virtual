@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import modelo.CarritoDetalle;
 import modelo.Cliente;
 import modelo.Compra;
-import modelo.ProductoStock;
 
 @Stateless
 public class ClienteDAO {
@@ -34,6 +33,7 @@ public class ClienteDAO {
 		cliente.getFechaNacimiento();
 		cliente.getImagen();
 		cliente.getCarrito().size();
+		cliente.getListaCompras().size();
 		return cliente;
 	}
 	
