@@ -1,8 +1,6 @@
 package modelo;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
 public class ProductoVendido extends Producto{
@@ -16,7 +14,4 @@ public class ProductoVendido extends Producto{
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
-	
-	
 }

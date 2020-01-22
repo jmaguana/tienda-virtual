@@ -9,6 +9,8 @@ import javax.persistence.Query;
 
 import modelo.CarritoDetalle;
 import modelo.Cliente;
+import modelo.Compra;
+import modelo.ProductoStock;
 
 @Stateless
 public class ClienteDAO {
@@ -18,6 +20,21 @@ public class ClienteDAO {
 	
 	public void insertar(Cliente cliente) throws Exception {
 		em.persist(cliente);
+	}
+	
+	public void actualizar(Cliente cliente) throws Exception {
+		em.merge(cliente);
+	}
+	
+	public Cliente leer(int codigo) throws Exception{
+		Cliente cliente = em.find(Cliente.class, codigo);
+		cliente.getNombre();
+		cliente.getApellidos();
+		cliente.getCorreo();
+		cliente.getFechaNacimiento();
+		cliente.getImagen();
+		cliente.getCarrito().size();
+		return cliente;
 	}
 	
 	public List<Cliente> listar() throws Exception {
@@ -42,10 +59,22 @@ public class ClienteDAO {
 	
 	public List<CarritoDetalle> listarProductosCarrito(int id){
 		Cliente cliente = new Cliente();
-		String jpql = "SELECT c FROM cliente c WHERE c.id = :id";
+		String jpql = "SELECT c FROM Cliente c WHERE c.id = :id";
 		Query query = em.createQuery(jpql, Cliente.class);
 		query.setParameter("id",id);
 		cliente = (Cliente) query.getSingleResult();
+		cliente.getCarrito().size();
+		System.out.println("Cliente carrito "+cliente.getCarrito());
 		return cliente.getCarrito();
+	}
+	
+	public List<Compra> listarCompras(int id_cliente){
+		Cliente cliente = new Cliente();
+		String jpql = "SELECT c FROM Cliente c WHERE c.id = :id_cliente";
+		Query query = em.createQuery(jpql, Cliente.class);
+		query.setParameter("id",id_cliente);
+		cliente = (Cliente) query.getSingleResult();
+		cliente.getListaCompras().size();
+		return cliente.getListaCompras();
 	}
 }

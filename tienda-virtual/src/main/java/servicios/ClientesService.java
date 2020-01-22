@@ -21,7 +21,7 @@ public class ClientesService {
 	private ControladorMovil controladorMovil;
 	
 	@GET
-	@Path("/listar")
+	@Path("/listarClientes")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<ClienteInfo> getClientes(){
 		try {

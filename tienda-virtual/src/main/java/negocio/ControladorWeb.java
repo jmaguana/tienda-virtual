@@ -45,27 +45,55 @@ public class ControladorWeb {
 	}
 	
 	public List<ProductoStock> listarProducto(){
-		return productoDao.listarProductos();
+		try {
+			return productoDao.listarProductos();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 	
 	public void insertarProducto(ProductoStock producto) {
-		productoDao.insertar(producto);
+		try {
+			productoDao.insertar(producto);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void actualizarProducto(ProductoStock producto) {
-		productoDao.actualizar(producto);
+		try {
+			productoDao.actualizar(producto);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public List<ProductoStock> buscarProducto(String nombre) {
-		return productoDao.buscar(nombre);
+		try {
+			return productoDao.buscar(nombre);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 	
 	public void borrarProducto(int codigo) {
-		productoDao.borrar(codigo);
+		try {
+			productoDao.borrar(codigo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public ProductoStock leerProducto(int codigo) {
-		return productoDao.leer(codigo);
+		try {
+			return productoDao.leer(codigo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+			
+		}
 	}
 	
 	public List<Usuario> listarUsuarios() {
@@ -84,7 +112,7 @@ public class ControladorWeb {
 		try{
 			usuariosDao.insertar(usuario);
 		}catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -92,4 +120,12 @@ public class ControladorWeb {
 		usuariosDao.actualizar(usuario);
 	}
 	
+	public List<ProductoStock> listarProductosVendidos(){
+		try {
+			return productoDao.listarProductosVendidos();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
 }

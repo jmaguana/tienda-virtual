@@ -43,6 +43,9 @@ public class CarritoDetalle {
 	public void setProducto(ProductoStock producto) {
 		this.producto = producto;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "CarritoDetalle [id=" + id + ", cantidad=" + cantidad + ", producto=" + producto + "]";
+	}
 }

@@ -3,14 +3,12 @@ package modelo;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 //@DiscriminatorValue(value="stock")
@@ -29,9 +27,7 @@ public class ProductoStock extends Producto{
 	@NotNull
 	private Categoria categoria;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "producto_vendido")
-	private List<ProductoVendido> ventas;
+	private int vendido;
 	
 	public int getStock() {
 		return stock;
@@ -59,12 +55,12 @@ public class ProductoStock extends Producto{
 		this.votos = votos;
 	}
 
-	public List<ProductoVendido> getVentas() {
-		return ventas;
+	public int getVendido() {
+		return vendido;
 	}
 
-	public void setVentas(List<ProductoVendido> ventas) {
-		this.ventas = ventas;
+	public void setVendido(int vendido) {
+		this.vendido = vendido;
 	}
 
 	@Override

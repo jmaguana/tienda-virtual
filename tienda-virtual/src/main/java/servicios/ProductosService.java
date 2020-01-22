@@ -34,7 +34,7 @@ public class ProductosService {
 				productoInfo.setDescripcion(p.getDescripcion());
 				productoInfo.setImagenes(p.getImagenes());
 				productoInfo.setPrecio(p.getPrecio());
-				productoInfo.setVotos(productos.size());
+				productoInfo.setVotos(p.getVotos().size());
 				productosInfo.add(productoInfo);
 			}
 			return productosInfo;
@@ -47,7 +47,7 @@ public class ProductosService {
 	@GET
 	@Path("/buscar/{codigo}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public ProductoInfo buscarProducto(@PathParam("codigo") int codigo) {
+	public ProductoInfo buscarProducto(@PathParam("codigo") int codigo) throws Exception {
 		ProductoStock ps = controladorMovil.buscarProducto(codigo);
 		ProductoInfo pi = new ProductoInfo();
 		pi.setCodigo(ps.getCodigo());
