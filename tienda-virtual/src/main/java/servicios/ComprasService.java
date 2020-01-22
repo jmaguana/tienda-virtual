@@ -21,6 +21,19 @@ public class ComprasService {
 	private ControladorMovil controladorMovil;
 	
 	@GET
+	@Path("/generarCompra/{codigoCliente}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public String generarCompras(@PathParam("codigoCliente") int codigoCliente) {
+		try {
+			controladorMovil.generarCompra(codigoCliente);
+			return "OK";
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return e.getMessage();
+		}
+	}
+	
+	@GET
 	@Path("/listar/{codigoCliente}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<CompraInfo> listarCompras(@PathParam("codigoCliente") int codigoCliente) {
