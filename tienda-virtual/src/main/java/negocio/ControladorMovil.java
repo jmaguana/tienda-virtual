@@ -96,6 +96,9 @@ public class ControladorMovil {
 			System.out.println("Total " +total);
 			total = (double)Math.round(total * 100d) / 100d;
 			System.out.println("Total redondeado " +total);
+			ProductoStock ps = productoDao.leer(carrito.getProducto().getCodigo());
+			ps.setVendido(ps.getVendido()+carrito.getCantidad());
+			productoDao.actualizar(ps);
 		}
 		compra.setTotal(total);
 		if (c.getListaCompras() != null) {
