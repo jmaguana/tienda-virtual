@@ -100,9 +100,11 @@ public class ControladorMovil {
 		compra.setTotal(total);
 		if (c.getListaCompras() != null) {
 			c.getListaCompras().add(compra);
+			c.getCarrito().clear();
 		} else {
 			c.setListaCompras(new ArrayList<Compra>());
 			c.getListaCompras().add(compra);
+			c.getCarrito().clear();
 		}
 		clienteDao.actualizar(c);
 	}
