@@ -32,7 +32,7 @@ public class ProductosService {
 				productoInfo.setCodigo(p.getCodigo());
 				productoInfo.setNombre(p.getNombre());
 				productoInfo.setDescripcion(p.getDescripcion());
-				productoInfo.setImagenes(p.getImagenes());
+				productoInfo.setImagenes(p.getImagen());
 				productoInfo.setPrecio(p.getPrecio());
 				productoInfo.setVotos(p.getVotos().size());
 				productosInfo.add(productoInfo);
@@ -53,7 +53,7 @@ public class ProductosService {
 		pi.setCodigo(ps.getCodigo());
 		pi.setNombre(ps.getNombre());
 		pi.setDescripcion(ps.getDescripcion());
-		pi.setImagenes(ps.getImagenes());
+		pi.setImagenes(ps.getImagen());
 		pi.setPrecio(ps.getPrecio());
 		return pi;
 	}

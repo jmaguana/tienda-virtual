@@ -28,7 +28,7 @@ public class Producto {
 	
 	private String descripcion;
 	
-	private String imagenes;
+	private String imagen;
 
 
 	@NotNull
@@ -65,13 +65,13 @@ public class Producto {
 	}
 
 
-	public String getImagenes() {
-		return imagenes;
+	public String getImagen() {
+		return imagen;
 	}
 
 
-	public void setImagenes(String imagenes) {
-		this.imagenes = imagenes;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 

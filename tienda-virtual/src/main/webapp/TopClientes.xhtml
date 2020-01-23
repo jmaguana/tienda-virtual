@@ -13,6 +13,52 @@
 	<ui:define name="contenido">
 	Top de Clientes
 	</ui:define>
+	
+	<ui:define name="tabla">
+	
+	
+		<h:form  id="tablaProductos">
+		
+			<h:dataTable  value="#{inicioBean.lista}" var="producto">
+			
+			<h:column class="columnass">
+					<f:facet name="header">Imagen</f:facet>
+					
+					<h:graphicImage value="#{producto.imagen}" width="80px" height="80px">
+					</h:graphicImage>
+
+				</h:column>
+			
+				<h:column class="columnass">
+					<f:facet name="header">Nombre</f:facet>
+					#{producto.nombre}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Descripcion</f:facet>
+					#{producto.descripcion}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Precio</f:facet>
+					#{producto.precio}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Categoría</f:facet>
+					#{producto.categoria.nombre}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Vendidos</f:facet>
+					#{producto.vendido}
+				</h:column>
+				
+				
+			</h:dataTable>
+			
+			
+			
+		</h:form>
+		
+	
+	</ui:define>
 
 </ui:composition>
 </html>

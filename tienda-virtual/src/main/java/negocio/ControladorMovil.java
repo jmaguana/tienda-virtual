@@ -59,13 +59,10 @@ public class ControladorMovil {
 		}
 	}
 
-	public List<Compra> listarCompras(int id_cliente) {
-		try {
+	public List<Compra> listarCompras(int id_cliente) throws Exception{
+		
 			return clienteDao.listarCompras(id_cliente);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
+		
 	}
 
 	public void insertarCarrito(int idCliente, int idProducto, int cantidad) throws Exception {
@@ -88,7 +85,7 @@ public class ControladorMovil {
 			ProductoVendido pv = new ProductoVendido();
 			pv.setCantidad(carrito.getCantidad());
 			pv.setDescripcion(carrito.getProducto().getDescripcion());
-			pv.setImagenes(carrito.getProducto().getImagenes());
+			pv.setImagen(carrito.getProducto().getImagen());
 			pv.setNombre(carrito.getProducto().getNombre());
 			pv.setPrecio(carrito.getProducto().getPrecio());
 			compra.getListaProductos().add(pv);

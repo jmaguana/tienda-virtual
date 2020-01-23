@@ -52,7 +52,7 @@ public class ProductoDAO {
 		ProductoStock producto = em.find(ProductoStock.class, codigo);
 		producto.getNombre();
 		producto.getDescripcion();
-		producto.getImagenes();
+		producto.getImagen();
 		producto.getPrecio();
 		return producto;
 	}

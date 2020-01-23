@@ -72,7 +72,7 @@ public class ClienteDAO {
 		Cliente cliente = new Cliente();
 		String jpql = "SELECT c FROM Cliente c WHERE c.id = :id_cliente";
 		Query query = em.createQuery(jpql, Cliente.class);
-		query.setParameter("id",id_cliente);
+		query.setParameter("id_cliente",id_cliente);
 		cliente = (Cliente) query.getSingleResult();
 		cliente.getListaCompras().size();
 		return cliente.getListaCompras();

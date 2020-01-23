@@ -32,7 +32,7 @@ public class CarritoService {
 				carritoInfo.setCodigo(c.getProducto().getCodigo());
 				carritoInfo.setCantidad(c.getCantidad());
 				carritoInfo.setDescripcion(c.getProducto().getDescripcion());
-				carritoInfo.setImagenes(c.getProducto().getImagenes());
+				carritoInfo.setImagenes(c.getProducto().getImagen());
 				carritoInfo.setNombre(c.getProducto().getNombre());
 				carritoInfo.setPrecio(c.getProducto().getPrecio());
 				carritoInfo.setCategoria(c.getProducto().getCategoria().getNombre());
