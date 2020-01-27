@@ -45,7 +45,8 @@ public class ComprasService {
 				compraInfo.setFecha(c.getFecha().toString());
 				compraInfo.setTotal(c.getTotal());
 				compraInfo.setId(c.getId());
-				compraInfo.setTotalProductos(c.getListaProductos().size());;
+				compraInfo.setTotalProductos(c.getListaProductos().size());
+				comprasInfo.add(compraInfo);
 			}
 			return comprasInfo;
 		}catch (Exception e) {

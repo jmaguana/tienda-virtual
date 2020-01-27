@@ -68,19 +68,34 @@ public class ControladorMovil {
 	public void insertarCarrito(int idCliente, int idProducto, int cantidad) throws Exception {
 		ProductoStock p = productoDao.leer(idProducto);
 		Cliente c = clienteDao.leer(idCliente);
-		CarritoDetalle cd = new CarritoDetalle();
-		cd.setProducto(p);
-		cd.setCantidad(cantidad);
-		c.getCarrito().add(cd);
+		CarritoDetalle cDetalle = null;
+		for(CarritoDetalle cd : c.getCarrito()) {
+			if(cd.getProducto().getCodigo() == idProducto) {
+				cDetalle = cd;
+				break;
+			}
+		}
+		if(cDetalle == null) {
+			CarritoDetalle cd = new CarritoDetalle();
+			cd.setProducto(p);
+			cd.setCantidad(cantidad);
+			c.getCarrito().add(cd);
+		}else{
+			cDetalle.setCantidad(cDetalle.getCantidad()+cantidad);
+		}
+		
 		clienteDao.actualizar(c);
 	}
 
-	public void generarCompra(int id) throws Exception {
+	public boolean generarCompra(int id) throws Exception {
 		double total = 0;
 		Cliente c = clienteDao.leer(id);
 		Compra compra = new Compra();
 		compra.setFecha(new Date());
 		compra.setListaProductos(new ArrayList<ProductoVendido>());
+		if(c.getCarrito().size()<=0) {
+			return false;
+		}
 		for (CarritoDetalle carrito : c.getCarrito()) {
 			ProductoVendido pv = new ProductoVendido();
 			pv.setCantidad(carrito.getCantidad());
@@ -107,5 +122,6 @@ public class ControladorMovil {
 			c.getCarrito().clear();
 		}
 		clienteDao.actualizar(c);
+		return true;
 	}
 }

@@ -2,6 +2,7 @@ package vista;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
@@ -26,6 +27,9 @@ public class InicioBean {
 		this.lista = lista;
 	}
 
-	
+	@PostConstruct
+	public void init() {
+		lista = controlador.listarProductosVendidos();
+	}
 	
 }

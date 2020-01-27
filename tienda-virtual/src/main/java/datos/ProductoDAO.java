@@ -68,7 +68,7 @@ public class ProductoDAO {
 	}
 	
 	public List<ProductoStock> listarProductosVendidos() throws Exception{
-		String jpql = "SELECT o FROM ProductoStock o ORDER BY o.vendido DESC";
+		String jpql = "SELECT o FROM ProductoStock o WHERE o.vendido != 0 ORDER BY o.vendido DESC";
 		Query query = em.createQuery(jpql, ProductoStock.class);
 		List<ProductoStock> productosVendidos = query.getResultList();
 		return productosVendidos;
