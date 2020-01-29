@@ -25,8 +25,13 @@ public class ComprasService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public String generarCompras(@PathParam("codigoCliente") int codigoCliente) {
 		try {
-			controladorMovil.generarCompra(codigoCliente);
-			return "OK";
+			boolean a = controladorMovil.generarCompra(codigoCliente);
+			if(a) {
+				return "ok";
+			}else {
+				return "NO";
+			}
+			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			return e.getMessage();

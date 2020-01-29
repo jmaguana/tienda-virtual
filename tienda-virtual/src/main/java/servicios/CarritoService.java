@@ -57,4 +57,12 @@ public class CarritoService {
 			return e.getMessage();
 		}
 	}
+	
+	@GET
+	@Path("/eliminar/{codigoCliente}/{codigoProducto}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public String eliminarCarrito(@PathParam("codigoCliente") int codigoCliente, @PathParam("codigoProducto") int codigoProducto) {
+		
+		return "";
+	}
 }

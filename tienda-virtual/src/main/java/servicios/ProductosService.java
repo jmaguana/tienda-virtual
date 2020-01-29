@@ -43,12 +43,42 @@ public class ProductosService {
 			return new ArrayList<ProductoInfo>();
 		}
 	}
+	/*
+	 * accion = 1 => Dar Like  
+	 */
+	@GET
+	@Path("/like/{productoid}/{clienteid}/{accion}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public String like(@PathParam("productoid") int productoId, @PathParam("clienteid") int clienteId, @PathParam("accion") int accion) {
+		if(accion == 1) {
+			try {
+				controladorMovil.darLike(clienteId, productoId);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				return e.getMessage();
+			}
+		}else {
+			try {
+				controladorMovil.quitarLike(clienteId, productoId);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				return e.getMessage();
+			}
+		}
+		return "";
+	}
 
 	@GET
 	@Path("/buscar/{codigo}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public ProductoInfo buscarProducto(@PathParam("codigo") int codigo) throws Exception {
-		ProductoStock ps = controladorMovil.buscarProducto(codigo);
+	public ProductoInfo buscarProducto(@PathParam("codigo") int codigo) {
+		ProductoStock ps=null;
+		try {
+			ps = controladorMovil.buscarProducto(codigo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ProductoInfo pi = new ProductoInfo();
 		pi.setCodigo(ps.getCodigo());
 		pi.setNombre(ps.getNombre());

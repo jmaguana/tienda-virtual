@@ -25,7 +25,7 @@ public class ControladorMovil {
 	@Inject
 	private ProductoDAO productoDao;
 
-	public Cliente login(String correo, String contrasenia) {
+	public Cliente login(String correo, String contrasenia) throws Exception {
 		return clienteDao.login(correo, contrasenia);
 	}
 
@@ -37,7 +37,7 @@ public class ControladorMovil {
 		return productoDao.listarProductos();
 	}
 
-	public ProductoStock buscarProducto(int codigo) {
+	public ProductoStock buscarProducto(int codigo) throws Exception{
 		try {
 			return productoDao.leer(codigo);
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class ControladorMovil {
 		}
 	}
 
-	public List<CarritoDetalle> listarProductoCarrito(int codigo) {
+	public List<CarritoDetalle> listarProductoCarrito(int codigo) throws Exception{
 		return clienteDao.listarProductosCarrito(codigo);
 	}
 
@@ -97,21 +97,29 @@ public class ControladorMovil {
 			return false;
 		}
 		for (CarritoDetalle carrito : c.getCarrito()) {
-			ProductoVendido pv = new ProductoVendido();
-			pv.setCantidad(carrito.getCantidad());
-			pv.setDescripcion(carrito.getProducto().getDescripcion());
-			pv.setImagen(carrito.getProducto().getImagen());
-			pv.setNombre(carrito.getProducto().getNombre());
-			pv.setPrecio(carrito.getProducto().getPrecio());
-			compra.getListaProductos().add(pv);
-			total += (pv.getCantidad() * pv.getPrecio());
-			System.out.println("Total " +total);
-			total = (double)Math.round(total * 100d) / 100d;
-			System.out.println("Total redondeado " +total);
-			ProductoStock ps = productoDao.leer(carrito.getProducto().getCodigo());
-			ps.setVendido(ps.getVendido()+carrito.getCantidad());
-			productoDao.actualizar(ps);
+			if(carrito.getCantidad()<=carrito.getProducto().getStock()) {
+							
+				ProductoVendido pv = new ProductoVendido();
+				pv.setCantidad(carrito.getCantidad());
+				pv.setDescripcion(carrito.getProducto().getDescripcion());
+				pv.setImagen(carrito.getProducto().getImagen());
+				pv.setNombre(carrito.getProducto().getNombre());
+				pv.setPrecio(carrito.getProducto().getPrecio());
+				compra.getListaProductos().add(pv);
+				total += (pv.getCantidad() * pv.getPrecio());
+				ProductoStock ps = productoDao.leer(carrito.getProducto().getCodigo());
+				ps.setVendido(ps.getVendido()+carrito.getCantidad());
+				productoDao.actualizar(ps);
+				carrito.getProducto().setStock(carrito.getProducto().getStock()-carrito.getCantidad());
+			}else {
+				System.out.println("Stock insuficiente");
+			}
 		}
+		total = (double)Math.round(total * 100d) / 100d;
+		if (total == 0.0) {
+			return false;
+		}
+		
 		compra.setTotal(total);
 		if (c.getListaCompras() != null) {
 			c.getListaCompras().add(compra);
@@ -123,5 +131,30 @@ public class ControladorMovil {
 		}
 		clienteDao.actualizar(c);
 		return true;
+	}
+	
+	public boolean darLike(int clienteId, int productoId) throws Exception {
+		Cliente cliente = clienteDao.leer(clienteId);
+		for(ProductoStock p : cliente.getListaVotos()) {
+			if(productoId == p.getCodigo()) {
+				return true;
+			}
+		}
+		ProductoStock producto = productoDao.leer(productoId);
+		cliente.getListaVotos().add(producto);
+		clienteDao.actualizar(cliente);
+		return true;
+	}
+	
+	public boolean quitarLike(int clienteId, int productoId) throws Exception {
+		Cliente cliente = clienteDao.leer(clienteId);
+		for(ProductoStock p : cliente.getListaVotos()) {
+			if(productoId == p.getCodigo()) {
+				cliente.getListaVotos().remove(p);
+				clienteDao.actualizar(cliente);
+				return true;
+			}
+		}
+		return false;
 	}
 }
