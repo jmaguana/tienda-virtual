@@ -9,10 +9,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.ClienteDAO;
+import datos.CompartidoDAO;
 import datos.ProductoDAO;
 import modelo.CarritoDetalle;
 import modelo.Cliente;
+import modelo.Compartido;
 import modelo.Compra;
+import modelo.Producto;
 import modelo.ProductoStock;
 import modelo.ProductoVendido;
 
@@ -24,6 +27,9 @@ public class ControladorMovil {
 
 	@Inject
 	private ProductoDAO productoDao;
+	
+	@Inject
+	private CompartidoDAO compartidoDao;
 
 	public Cliente login(String correo, String contrasenia) throws Exception {
 		return clienteDao.login(correo, contrasenia);
@@ -38,12 +44,7 @@ public class ControladorMovil {
 	}
 
 	public ProductoStock buscarProducto(int codigo) throws Exception{
-		try {
-			return productoDao.leer(codigo);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
+			return productoDao.leerConVotos(codigo);
 	}
 
 	public List<CarritoDetalle> listarProductoCarrito(int codigo) throws Exception{
@@ -60,11 +61,23 @@ public class ControladorMovil {
 	}
 
 	public List<Compra> listarCompras(int id_cliente) throws Exception{
-		
 			return clienteDao.listarCompras(id_cliente);
 		
 	}
 
+	public boolean compartir(int idEmisor, int idReceptor, int idCodigo) throws Exception {
+		Compartido compartido = new Compartido();
+		ProductoStock producto = productoDao.leer(idCodigo);
+		System.out.println("El producto es: "+producto.getNombre());
+		Cliente c1 = clienteDao.leerVacio(idEmisor);
+		Cliente c2 = clienteDao.leerVacio(idReceptor);
+		compartido.setClienteEnvia(c1);
+		compartido.setClienteRecibe(c2);
+		compartido.setProducto(producto);
+		compartidoDao.insertar(compartido);
+		return true;
+	}
+	
 	public void insertarCarrito(int idCliente, int idProducto, int cantidad) throws Exception {
 		ProductoStock p = productoDao.leer(idProducto);
 		Cliente c = clienteDao.leer(idCliente);
@@ -134,20 +147,34 @@ public class ControladorMovil {
 	}
 	
 	public boolean darLike(int clienteId, int productoId) throws Exception {
-		Cliente cliente = clienteDao.leer(clienteId);
+		Cliente cliente = clienteDao.leerConVotos(clienteId);
 		for(ProductoStock p : cliente.getListaVotos()) {
 			if(productoId == p.getCodigo()) {
 				return true;
 			}
 		}
 		ProductoStock producto = productoDao.leer(productoId);
+		//producto.getVotos().add(cliente);
 		cliente.getListaVotos().add(producto);
 		clienteDao.actualizar(cliente);
 		return true;
 	}
 	
+	public boolean isLiked(int clienteId, int productoId) throws Exception {
+		Cliente cliente = clienteDao.leerConVotos(clienteId);
+		if(cliente.getListaVotos() == null) {
+			return false;
+		}
+		for(ProductoStock p : cliente.getListaVotos()) {
+			if(productoId == p.getCodigo()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean quitarLike(int clienteId, int productoId) throws Exception {
-		Cliente cliente = clienteDao.leer(clienteId);
+		Cliente cliente = clienteDao.leerConVotos(clienteId);
 		for(ProductoStock p : cliente.getListaVotos()) {
 			if(productoId == p.getCodigo()) {
 				cliente.getListaVotos().remove(p);

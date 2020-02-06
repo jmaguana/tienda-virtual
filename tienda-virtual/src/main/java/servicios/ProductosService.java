@@ -34,7 +34,7 @@ public class ProductosService {
 				productoInfo.setDescripcion(p.getDescripcion());
 				productoInfo.setImagenes(p.getImagen());
 				productoInfo.setPrecio(p.getPrecio());
-				productoInfo.setVotos(p.getVotos().size());
+				productoInfo.setVotos(0);
 				productosInfo.add(productoInfo);
 			}
 			return productosInfo;
@@ -43,9 +43,7 @@ public class ProductosService {
 			return new ArrayList<ProductoInfo>();
 		}
 	}
-	/*
-	 * accion = 1 => Dar Like  
-	 */
+	
 	@GET
 	@Path("/like/{productoid}/{clienteid}/{accion}")
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -67,6 +65,19 @@ public class ProductosService {
 		}
 		return "";
 	}
+	
+	@GET
+	@Path("/islike/{productoid}/{clienteid}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public boolean isLiked(@PathParam("productoid") int productoId, @PathParam("clienteid") int clienteId) {
+		try {
+			return controladorMovil.isLiked(clienteId, productoId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	@GET
 	@Path("/buscar/{codigo}")
@@ -85,6 +96,9 @@ public class ProductosService {
 		pi.setDescripcion(ps.getDescripcion());
 		pi.setImagenes(ps.getImagen());
 		pi.setPrecio(ps.getPrecio());
+		pi.setVotos(ps.getVotos().size());
 		return pi;
 	}
 }
+
+

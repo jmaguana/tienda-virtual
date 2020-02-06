@@ -18,8 +18,7 @@ public class ProductoStock extends Producto{
 	@NotNull
 	private int stock;
 	
-	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinTable(name = "votos")
+	@ManyToMany(mappedBy = "listaVotos")
 	private List<Cliente> votos;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -63,10 +62,5 @@ public class ProductoStock extends Producto{
 		this.vendido = vendido;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductoStock [stock=" + stock + ", votos=" + votos + ", categoria=" + categoria + "]";
-	}
-	
 	
 }

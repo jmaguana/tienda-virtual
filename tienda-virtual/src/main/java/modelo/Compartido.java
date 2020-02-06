@@ -15,8 +15,8 @@ public class Compartido {
 	@GeneratedValue
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "producto_compartido")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "producto")
 	@NotNull
 	private ProductoStock producto;
 	

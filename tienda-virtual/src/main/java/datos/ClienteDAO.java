@@ -1,5 +1,6 @@
 package datos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,7 +10,9 @@ import javax.persistence.Query;
 
 import modelo.CarritoDetalle;
 import modelo.Cliente;
+import modelo.Compartido;
 import modelo.Compra;
+import modelo.ProductoStock;
 
 @Stateless
 public class ClienteDAO {
@@ -27,13 +30,35 @@ public class ClienteDAO {
 	
 	public Cliente leer(int codigo) throws Exception{
 		Cliente cliente = em.find(Cliente.class, codigo);
-		cliente.getNombre();
-		cliente.getApellidos();
-		cliente.getCorreo();
-		cliente.getFechaNacimiento();
-		cliente.getImagen();
 		cliente.getCarrito().size();
 		cliente.getListaCompras().size();
+		return cliente;
+	}
+	
+	public Cliente leerVacio(int codigo) throws Exception{
+		Cliente cliente = em.find(Cliente.class, codigo);
+		return cliente;
+	}
+	
+	public Cliente leerConCompartido(int codigo) throws Exception{
+		Cliente cliente = em.find(Cliente.class, codigo);
+		cliente.getListaEnviado().size();
+		cliente.getListaRecibido().size();
+		if(cliente.getListaEnviado() == null) {
+			cliente.setListaEnviado(new ArrayList<Compartido>());
+		}
+		if(cliente.getListaRecibido() == null) {
+			cliente.setListaRecibido(new ArrayList<Compartido>());
+		}
+		return cliente;
+	}
+	
+	public Cliente leerConVotos(int codigo) throws Exception{
+		Cliente cliente = em.find(Cliente.class, codigo);
+		cliente.getListaVotos().size();
+		if(cliente.getListaVotos() == null) {
+			cliente.setListaVotos(new ArrayList<ProductoStock>());
+		}
 		return cliente;
 	}
 	

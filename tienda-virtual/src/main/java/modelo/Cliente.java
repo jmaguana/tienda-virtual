@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -41,7 +42,8 @@ public class Cliente {
 	@NotNull
 	private String contrasenia;
 	
-	@ManyToMany(mappedBy = "votos")
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinTable(name = "votos")
 	private List<ProductoStock> listaVotos;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -53,7 +55,7 @@ public class Cliente {
 	private List<Compartido> listaEnviado;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "recivbe")
+	@JoinColumn(name = "recibe")
 	private List<Compartido> listaRecibido;
 
 	public int getId() {

@@ -17,6 +17,18 @@ public class ProductoInfo {
 	private int cantidad;
 	
 	private String categoria;
+	
+	private boolean isLike;
+	
+	
+
+	public boolean isLike() {
+		return isLike;
+	}
+
+	public void setLike(boolean isLike) {
+		this.isLike = isLike;
+	}
 
 	public String getNombre() {
 		return nombre;

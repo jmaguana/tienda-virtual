@@ -50,10 +50,12 @@ public class ProductoDAO {
 	
 	public ProductoStock leer(int codigo) throws Exception{
 		ProductoStock producto = em.find(ProductoStock.class, codigo);
-		producto.getNombre();
-		producto.getDescripcion();
-		producto.getImagen();
-		producto.getPrecio();
+		return producto;
+	}
+	
+	public ProductoStock leerConVotos(int codigo) throws Exception{
+		ProductoStock producto = em.find(ProductoStock.class, codigo);
+		producto.getVotos().size();
 		return producto;
 	}
 	
@@ -61,9 +63,6 @@ public class ProductoDAO {
 		String jpql = "SELECT o FROM ProductoStock o";
 		Query query = em.createQuery(jpql, ProductoStock.class);
 		List<ProductoStock> productos = query.getResultList();
-		for(ProductoStock p:productos) {
-			p.getVotos().size();
-		}
 		return productos;
 	}
 	

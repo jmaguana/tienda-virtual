@@ -21,7 +21,7 @@ public class ClientesService {
 	private ControladorMovil controladorMovil;
 	
 	@GET
-	@Path("/listarClientes")
+	@Path("/listar")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<ClienteInfo> getClientes(){
 		try {
@@ -42,6 +42,21 @@ public class ClientesService {
 			System.out.println(e.getMessage());
 			return new ArrayList<ClienteInfo>();
 		}
+	}
+	
+	@GET
+	@Path("compartir/{idEmisor}/{idReceptor}/{idProducto}")
+	@Produces("application/json")
+	public boolean compartir(@PathParam("idEmisor") int emisor, @PathParam("idReceptor") int receptor, @PathParam("idProducto") int producto) {
+		try {
+			boolean a = controladorMovil.compartir(emisor, receptor, producto);
+			return a;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 	
 	@GET
