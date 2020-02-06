@@ -1,6 +1,6 @@
 package modelo_servicio;
 
-import java.util.Date;
+//import java.util.Date;
 
 public class ClienteInfo {
 
@@ -8,12 +8,14 @@ public class ClienteInfo {
 	
 	private String nombre;
 
-	private String imagen;
+	//private String imagen;
 
 	private String apellidos;
 
-	private Date fechaNacimiento;
+	//private String fechaNacimiento;
 
+	private String telefono;
+	
 	private String correo;
 	
 	public int getCodigo() {
@@ -32,13 +34,13 @@ public class ClienteInfo {
 		this.nombre = nombre;
 	}
 
-	public String getImagen() {
+	/*public String getImagen() {
 		return imagen;
 	}
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
+	}*/
 
 	public String getApellidos() {
 		return apellidos;
@@ -48,13 +50,13 @@ public class ClienteInfo {
 		this.apellidos = apellidos;
 	}
 
-	public Date getFechaNacimiento() {
+	/*public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
-	}
+	}*/
 
 	public String getCorreo() {
 		return correo;
@@ -64,4 +66,17 @@ public class ClienteInfo {
 		this.correo = correo;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	@Override
+	public String toString() {
+		return "ClienteInfo [codigo=" + codigo + ", nombre=" + nombre + ", apellidos="
+				+ apellidos + ", telefono=" + telefono + ", correo=" + correo + "]";
+	}
 }

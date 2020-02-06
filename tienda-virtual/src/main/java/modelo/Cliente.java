@@ -1,6 +1,6 @@
 package modelo;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,11 +26,13 @@ public class Cliente {
 	
 	private String nombre;
 	
-	private String imagen;
+	//private String imagen;
 	
 	private String apellidos;
 	
-	private Date fechaNacimiento;
+	//private Date fechaNacimiento;
+
+	private String telefono;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente")
@@ -82,13 +84,13 @@ public class Cliente {
 		this.apellidos = apellidos;
 	}
 
-	public Date getFechaNacimiento() {
+	/*public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
-	}
+	}*/
 
 	public List<CarritoDetalle> getCarrito() {
 		return carrito;
@@ -146,19 +148,27 @@ public class Cliente {
 		this.listaRecibido = listaRecibido;
 	}
 
-	public String getImagen() {
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono
+				+ ", correo=" + correo + ", contrasenia=" + contrasenia + "]";
+	}
+
+	/*public String getImagen() {
 		return imagen;
 	}
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
+	}*/
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", apellidos=" + apellidos
-				+ ", fechaNacimiento=" + fechaNacimiento + ", carrito=" + carrito + ", correo=" + correo
-				+ ", contrasenia=" + contrasenia + ", listaVotos=" + listaVotos + ", listaCompras=" + listaCompras
-				+ ", listaEnviado=" + listaEnviado + ", listaRecibido=" + listaRecibido + "]";
-	}
+	
 }

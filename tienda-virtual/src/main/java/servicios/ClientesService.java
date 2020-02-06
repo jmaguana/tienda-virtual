@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -21,7 +23,7 @@ public class ClientesService {
 	private ControladorMovil controladorMovil;
 	
 	@GET
-	@Path("/listar")
+	@Path("/listarClientes")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<ClienteInfo> getClientes(){
 		try {
@@ -32,9 +34,10 @@ public class ClientesService {
 				clienteInfo.setCodigo(c.getId());
 				clienteInfo.setNombre(c.getNombre());
 				clienteInfo.setApellidos(c.getApellidos());
-				clienteInfo.setImagen(c.getImagen());
-				clienteInfo.setFechaNacimiento(c.getFechaNacimiento());
+				//clienteInfo.setImagen(c.getImagen());
+				//clienteInfo.setFechaNacimiento(c.getFechaNacimiento().toString());
 				clienteInfo.setCorreo(c.getCorreo());
+				clienteInfo.setTelefono(c.getTelefono());
 				clientesInfo.add(clienteInfo);
 			}
 			return clientesInfo;
@@ -70,12 +73,25 @@ public class ClientesService {
 			ci.setNombre(c.getNombre());
 			ci.setApellidos(c.getApellidos());
 			ci.setCorreo(c.getCorreo());
-			ci.setImagen(c.getImagen());
-			ci.setFechaNacimiento(c.getFechaNacimiento());
+			//ci.setImagen(c.getImagen());
+			//ci.setFechaNacimiento(c.getFechaNacimiento().toString());
+			ci.setTelefono(c.getTelefono());
 			return ci;
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
+		}
+	}
+	
+	@POST
+	@Path("crearCliente")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public void createClient(Cliente cliente) {
+		try {
+			controladorMovil.insertarCliente(cliente);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }

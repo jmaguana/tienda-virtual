@@ -1,6 +1,6 @@
 package negocio;
 
-import java.text.DecimalFormat;
+//import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +15,7 @@ import modelo.CarritoDetalle;
 import modelo.Cliente;
 import modelo.Compartido;
 import modelo.Compra;
-import modelo.Producto;
+//import modelo.Producto;
 import modelo.ProductoStock;
 import modelo.ProductoVendido;
 
@@ -183,5 +183,9 @@ public class ControladorMovil {
 			}
 		}
 		return false;
+	}
+	
+	public void insertarCliente(Cliente cliente) throws Exception {
+		clienteDao.insertar(cliente);
 	}
 }

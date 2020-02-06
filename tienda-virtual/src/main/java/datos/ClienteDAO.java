@@ -30,6 +30,12 @@ public class ClienteDAO {
 	
 	public Cliente leer(int codigo) throws Exception{
 		Cliente cliente = em.find(Cliente.class, codigo);
+		cliente.getNombre();
+		cliente.getApellidos();
+		cliente.getCorreo();
+		//cliente.getFechaNacimiento();
+		//cliente.getImagen();
+		cliente.getTelefono();
 		cliente.getCarrito().size();
 		cliente.getListaCompras().size();
 		return cliente;
