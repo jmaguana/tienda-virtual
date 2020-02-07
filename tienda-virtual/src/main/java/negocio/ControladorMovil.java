@@ -19,9 +19,22 @@ import modelo.Compra;
 import modelo.ProductoStock;
 import modelo.ProductoVendido;
 
+/**
+ * En esta clase tenemos todos aquellos atributos <br>
+ * y metodos que son necesarios en esta clase y que van a ser <br>
+ * utilizados por una aplicacion movil
+ * 
+ * @author Jhonny Maguana
+ * @author Sandra Peñaranda
+ * @version 2.0
+ * 
+ */
 @Stateless
 public class ControladorMovil {
 
+	/**
+	 * Atributos de la clase, que vienen del paquete de datos
+	 */
 	@Inject
 	private ClienteDAO clienteDao;
 
@@ -31,26 +44,67 @@ public class ControladorMovil {
 	@Inject
 	private CompartidoDAO compartidoDao;
 
+	/**
+	 * Metodo que permite realizar un login
+	 * @param correo que pertenece al cliente
+	 * @param contrasenia que pertenece al cliente
+	 * @return un objeto de tipo Cliente
+	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * al realizar el login
+	 */
 	public Cliente login(String correo, String contrasenia) throws Exception {
 		return clienteDao.login(correo, contrasenia);
 	}
 
+	/**
+	 * Metodo que permite listar todos los campos pertenecientes a <br>
+	 * un cliente
+	 * @return clientes que es una lista de tipo Cliente
+	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * al realizar la consulta
+	 */
 	public List<Cliente> listarClientes() throws Exception {
 		return clienteDao.listar();
 	}
 
+	/**
+	 * Metodo que permite listar los productos 
+	 * @return productos que es una lista de tipo ProductoStock
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al listar los productos
+	 */
 	public List<ProductoStock> listarProductos() throws Exception {
 		return productoDao.listarProductos();
 	}
 
+	/**
+	 * Metodo que permite realizar la busqueda de un producto, el cual <br>
+	 * tenga votos registrados
+	 * @param codigo de tipo int y pertenece a un producto
+	 * @return producto que un objeto de tipo ProductoStock
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al buscar un objeto de tipo ProductoStock
+	 */
 	public ProductoStock buscarProducto(int codigo) throws Exception{
 			return productoDao.leerConVotos(codigo);
 	}
 
+	/**
+	 * Metodo que permite listar los productos que se hayan aniadido <br>
+	 * al carrito de compras
+	 * @param id, codigo del cliente
+	 * @return una lista de los productos que se desean comprar
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al listar
+	 */
 	public List<CarritoDetalle> listarProductoCarrito(int codigo) throws Exception{
 		return clienteDao.listarProductosCarrito(codigo);
 	}
 
+	/**
+	 * Metodo que permite listar los productos que han sido vendidos
+	 * @return una lista de productos de tipo ProductoStock
+	 */
 	public List<ProductoStock> listarProductosVendidos() {
 		try {
 			return productoDao.listarProductosVendidos();
@@ -60,11 +114,26 @@ public class ControladorMovil {
 		}
 	}
 
+	/**
+	 * Metodo que permite listar las compras
+	 * @param id_cliente
+	 * @return una listado de las compras que ha realizado un cliente
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al listar
+	 */
 	public List<Compra> listarCompras(int id_cliente) throws Exception{
 			return clienteDao.listarCompras(id_cliente);
-		
 	}
 
+	/**
+	 * Metodo que permite compartir productos entre los clientes
+	 * @param idEmisor codigo del que envia
+	 * @param idReceptor codigo del que recibe
+	 * @param idCodigo 
+	 * @return True en caso de realizar el metodo correctamente
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al compartir
+	 */
 	public boolean compartir(int idEmisor, int idReceptor, int idCodigo) throws Exception {
 		Compartido compartido = new Compartido();
 		ProductoStock producto = productoDao.leer(idCodigo);
@@ -78,6 +147,14 @@ public class ControladorMovil {
 		return true;
 	}
 	
+	/**
+	 * Metodo que permite agregar productos al carrito
+	 * @param idCliente codigo del cliente
+	 * @param idProducto codigo del producto
+	 * @param cantidad cantidad del producto
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al insertar
+	 */
 	public void insertarCarrito(int idCliente, int idProducto, int cantidad) throws Exception {
 		ProductoStock p = productoDao.leer(idProducto);
 		Cliente c = clienteDao.leer(idCliente);
@@ -100,6 +177,13 @@ public class ControladorMovil {
 		clienteDao.actualizar(c);
 	}
 
+	/**
+	 * Metodo que permite realizar una compra
+	 * @param id codigo del cliente
+	 * @return True en caso de ser exitosa la compra
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al relizar la compra
+	 */
 	public boolean generarCompra(int id) throws Exception {
 		double total = 0;
 		Cliente c = clienteDao.leer(id);
@@ -146,6 +230,14 @@ public class ControladorMovil {
 		return true;
 	}
 	
+	/**
+	 * Metodo que permite dar un me gusta a un producto
+	 * @param clienteId codigo del cliente
+	 * @param productoId codigo del producto
+	 * @return True en caso de ser exitoso el metodo
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al dar like
+	 */
 	public boolean darLike(int clienteId, int productoId) throws Exception {
 		Cliente cliente = clienteDao.leerConVotos(clienteId);
 		for(ProductoStock p : cliente.getListaVotos()) {
@@ -160,6 +252,14 @@ public class ControladorMovil {
 		return true;
 	}
 	
+	/**
+	 * Metodo que permite saber si el producto ya tiene un me gusta 
+	 * @param clienteId codigo del cliente
+	 * @param productoId codigo del producto
+	 * @return True en caso de ser satisfactorio el resultado
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al verificar like
+	 */
 	public boolean isLiked(int clienteId, int productoId) throws Exception {
 		Cliente cliente = clienteDao.leerConVotos(clienteId);
 		if(cliente.getListaVotos() == null) {
@@ -173,6 +273,15 @@ public class ControladorMovil {
 		return false;
 	}
 	
+
+	/**
+	 * Metodo que permite quitar un me gusta a un producto
+	 * @param clienteId codigo del cliente
+	 * @param productoId codigo del producto
+	 * @return True en caso de ser exitoso el metodo
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al quitar un like
+	 */
 	public boolean quitarLike(int clienteId, int productoId) throws Exception {
 		Cliente cliente = clienteDao.leerConVotos(clienteId);
 		for(ProductoStock p : cliente.getListaVotos()) {
@@ -185,6 +294,13 @@ public class ControladorMovil {
 		return false;
 	}
 	
+	/**
+	 * Metodo que permite insertar un cliente en la BD
+	 * 
+	 * @param cliente de tipo Cliente
+	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * al insertar un objeto de tipo Cliente
+	 */
 	public void insertarCliente(Cliente cliente) throws Exception {
 		clienteDao.insertar(cliente);
 	}
