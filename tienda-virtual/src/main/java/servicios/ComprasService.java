@@ -14,9 +14,23 @@ import modelo.Compra;
 import modelo_servicio.CompraInfo;
 import negocio.ControladorMovil;
 
+/**
+ * En esta clase tenemos un atributo que viene del paquete de negocio <br>
+ * y webservices que son necesarios para la aplicacion movil en la parte <br>
+ * de las compras
+ * 
+ * @author Jhonny Maguana
+ * @author Sandra Peñaranda
+ * @version 2.0
+ * 
+ */
+
 @Path("/compras")
 public class ComprasService {
 	
+	/**
+	 * Atributo de la clase de tipo ControladorMovil
+	 */
 	@Inject
 	private ControladorMovil controladorMovil;
 	

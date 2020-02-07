@@ -14,12 +14,29 @@ import modelo.ProductoStock;
 import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
+/**
+ * En esta clase tenemos un atributo que viene del paquete de negocio <br>
+ * y webservices que son necesarios para la aplicacion movil en la parte <br>
+ * de los productos
+ * 
+ * @author Jhonny Maguana
+ * @author Sandra Peñaranda
+ * @version 2.0
+ * 
+ */
 @Path("/productos")
 public class ProductosService {
 
+	/**
+	 * Atributo de la clase de tipo ControladorMovil
+	 */
 	@Inject
 	private ControladorMovil controladorMovil;
 
+	/**
+	 * Web serivce que permite listar los productos
+	 * @return una lista de productos de tipo ProductoInfo
+	 */
 	@GET
 	@Path("/listar")
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -43,19 +60,28 @@ public class ProductosService {
 			return new ArrayList<ProductoInfo>();
 		}
 	}
-	
+
+	/**
+	 * Web service que permite dar like a un producto
+	 * @param productoId codigo del producto
+	 * @param clienteId codigo del cliente
+	 * @param accion permite saber si al producto se le da un like o se lo quita
+	 * @return un mensaje de confirmacion para saber si el metodo se <br>
+	 * ejecuto correctamente
+	 */
 	@GET
 	@Path("/like/{productoid}/{clienteid}/{accion}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public String like(@PathParam("productoid") int productoId, @PathParam("clienteid") int clienteId, @PathParam("accion") int accion) {
-		if(accion == 1) {
+	public String like(@PathParam("productoid") int productoId, @PathParam("clienteid") int clienteId,
+			@PathParam("accion") int accion) {
+		if (accion == 1) {
 			try {
 				controladorMovil.darLike(clienteId, productoId);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				return e.getMessage();
 			}
-		}else {
+		} else {
 			try {
 				controladorMovil.quitarLike(clienteId, productoId);
 			} catch (Exception e) {
@@ -65,7 +91,14 @@ public class ProductosService {
 		}
 		return "";
 	}
-	
+
+	/**
+	 * Web service que permite saber si es un like
+	 * @param productoId codigo del producto
+	 * @param clienteId codigo del cliente
+	 * @return true o false dependiendo si se cumple o no con la accion <br>
+	 * del metodo del cual se hace uso
+	 */
 	@GET
 	@Path("/islike/{productoid}/{clienteid}")
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -79,11 +112,16 @@ public class ProductosService {
 		}
 	}
 
+	/**
+	 * Web service que permite buscar a un producto
+	 * @param codigo
+	 * @return un objeto de tipo ProductoInfo
+	 */
 	@GET
 	@Path("/buscar/{codigo}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ProductoInfo buscarProducto(@PathParam("codigo") int codigo) {
-		ProductoStock ps=null;
+		ProductoStock ps = null;
 		try {
 			ps = controladorMovil.buscarProducto(codigo);
 		} catch (Exception e) {
@@ -100,5 +138,3 @@ public class ProductosService {
 		return pi;
 	}
 }
-
-

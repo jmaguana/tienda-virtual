@@ -14,12 +14,31 @@ import modelo.CarritoDetalle;
 import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
+/**
+ * En esta clase tenemos un atributo que viene del paquete de negocio <br>
+ * y webservices que son necesarios para la aplicacion movil en la parte <br>
+ * del carrito
+ * 
+ * @author Jhonny Maguana
+ * @author Sandra Peñaranda
+ * @version 2.0
+ * 
+ */
 @Path("/carrito")
 public class CarritoService {
-	
+
+	/**
+	 * Atributo de la clase de tipo ControladorMovil
+	 */
 	@Inject
 	private ControladorMovil controladorMovil;
 
+	/**
+	 * Web service que permite listar los productos que se tiene en el carrito
+	 * 
+	 * @param codigoCliente
+	 * @return una lista de los productos
+	 */
 	@GET
 	@Path("/listar/{codigoCliente}")
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -27,8 +46,8 @@ public class CarritoService {
 		try {
 			List<CarritoDetalle> carritos = controladorMovil.listarProductoCarrito(codigoCliente);
 			List<ProductoInfo> carritosInfo = new ArrayList<>();
-			for(CarritoDetalle c : carritos) {
-				ProductoInfo carritoInfo =  new ProductoInfo();
+			for (CarritoDetalle c : carritos) {
+				ProductoInfo carritoInfo = new ProductoInfo();
 				carritoInfo.setCodigo(c.getProducto().getCodigo());
 				carritoInfo.setCantidad(c.getCantidad());
 				carritoInfo.setDescripcion(c.getProducto().getDescripcion());
@@ -39,30 +58,47 @@ public class CarritoService {
 				carritosInfo.add(carritoInfo);
 			}
 			return carritosInfo;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
 	}
 
+	/**
+	 * Web service que permite insertar prodcutos al carrito
+	 * 
+	 * @param codigoCliente
+	 * @param codigoProducto
+	 * @param cantidad,      cantidad de productos a ingresar en el carrito
+	 * @return un mensaje para saber si se insertaron o no los productos
+	 */
 	@GET
 	@Path("/insertar/{codigoCliente}/{codigoProducto}/{cantidad}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public String insertarCarrito(@PathParam("codigoCliente") int codigoCliente, @PathParam("codigoProducto") int codigoProducto, @PathParam("cantidad") int cantidad) {
+	public String insertarCarrito(@PathParam("codigoCliente") int codigoCliente,
+			@PathParam("codigoProducto") int codigoProducto, @PathParam("cantidad") int cantidad) {
 		try {
 			controladorMovil.insertarCarrito(codigoCliente, codigoProducto, cantidad);
 			return "Ok";
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return e.getMessage();
 		}
 	}
-	
+
+	/**
+	 * Web service que permite eliminar un producto ya agregado al carrito
+	 * 
+	 * @param codigoCliente
+	 * @param codigoProducto
+	 * @return un mensaje para verificar si elimino o no el producto
+	 */
 	@GET
 	@Path("/eliminar/{codigoCliente}/{codigoProducto}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public String eliminarCarrito(@PathParam("codigoCliente") int codigoCliente, @PathParam("codigoProducto") int codigoProducto) {
-		
+	public String eliminarCarrito(@PathParam("codigoCliente") int codigoCliente,
+			@PathParam("codigoProducto") int codigoProducto) {
+
 		return "";
 	}
 }
