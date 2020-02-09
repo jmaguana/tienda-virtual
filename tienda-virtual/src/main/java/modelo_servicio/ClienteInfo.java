@@ -31,6 +31,16 @@ public class ClienteInfo {
 	
 	private String correo;
 	
+	private String contrasenia;
+	
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
 	/**
 	 * 
 	 * @return codigo perteneciente al cliente

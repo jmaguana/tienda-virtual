@@ -46,7 +46,6 @@ public class Cliente {
 	
 	//private Date fechaNacimiento;
 
-	@NotNull
 	private String telefono;
 	
 	@NotNull

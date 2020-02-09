@@ -11,7 +11,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import modelo.Compra;
+import modelo.ProductoVendido;
 import modelo_servicio.CompraInfo;
+import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
 /**
@@ -35,15 +37,15 @@ public class ComprasService {
 	private ControladorMovil controladorMovil;
 	
 	@GET
-	@Path("/generarCompra/{codigoCliente}")
+	@Path("generarCompra/{codigoCliente}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public String generarCompras(@PathParam("codigoCliente") int codigoCliente) {
+	public String generarCompras(@PathParam("codigoCliente") int codigo) {
 		try {
-			boolean a = controladorMovil.generarCompra(codigoCliente);
+			boolean a = controladorMovil.generarCompra(codigo);
 			if(a) {
 				return "ok";
 			}else {
-				return "NO";
+				return "no";
 			}
 			
 		}catch (Exception e) {
@@ -53,12 +55,13 @@ public class ComprasService {
 	}
 	
 	@GET
-	@Path("/listar/{codigoCliente}")
+	@Path("/listar/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<CompraInfo> listarCompras(@PathParam("codigoCliente") int codigoCliente) {
+	public List<CompraInfo> listarCompras(@PathParam("id") int codigo) {
+		List<CompraInfo> comprasInfo = new ArrayList<>();
 		try {
-			List<Compra> compras = controladorMovil.listarCompras(codigoCliente);
-			List<CompraInfo> comprasInfo = new ArrayList<>();
+			List<Compra> compras = controladorMovil.listarCompras(codigo);
+			
 			for(Compra c : compras) {
 				CompraInfo compraInfo =  new CompraInfo();
 				compraInfo.setFecha(c.getFecha().toString());
@@ -70,7 +73,30 @@ public class ComprasService {
 			return comprasInfo;
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			return null;
+			return comprasInfo;
 		}
+	}
+	
+	@GET
+	@Path("/listarproducto/{codigoCompra}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<ProductoInfo> listarProductosCompra(@PathParam("codigoCompra") int codigo){
+		try {
+			List<ProductoInfo> listaPro = new ArrayList<>();
+			List<ProductoVendido> lista = controladorMovil.listarCompra(codigo);
+			for(ProductoVendido p:lista) {
+				ProductoInfo producto = new ProductoInfo();
+				producto.setNombre(p.getNombre());
+				producto.setImagenes(p.getImagen());
+				producto.setCantidad(p.getCantidad());
+				producto.setPrecio(p.getPrecio());
+				listaPro.add(producto);
+			}
+			return listaPro;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

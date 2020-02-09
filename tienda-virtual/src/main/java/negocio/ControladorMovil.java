@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import datos.ClienteDAO;
 import datos.CompartidoDAO;
+import datos.CompraDAO;
 import datos.ProductoDAO;
 import modelo.CarritoDetalle;
 import modelo.Cliente;
@@ -43,6 +44,9 @@ public class ControladorMovil {
 	
 	@Inject
 	private CompartidoDAO compartidoDao;
+	
+	@Inject
+	private CompraDAO compraDao;
 
 	/**
 	 * Metodo que permite realizar un login
@@ -143,6 +147,7 @@ public class ControladorMovil {
 		compartido.setClienteEnvia(c1);
 		compartido.setClienteRecibe(c2);
 		compartido.setProducto(producto);
+		compartido.setVisto(false);
 		compartidoDao.insertar(compartido);
 		return true;
 	}
@@ -210,6 +215,7 @@ public class ControladorMovil {
 				carrito.getProducto().setStock(carrito.getProducto().getStock()-carrito.getCantidad());
 			}else {
 				System.out.println("Stock insuficiente");
+				throw new Exception("No existe suficiente Stock de: "+carrito.getProducto().getNombre());
 			}
 		}
 		total = (double)Math.round(total * 100d) / 100d;
@@ -304,4 +310,42 @@ public class ControladorMovil {
 	public void insertarCliente(Cliente cliente) throws Exception {
 		clienteDao.insertar(cliente);
 	}
+	
+	public List<Compartido> listarCompartido(int codigo) throws Exception {
+		Cliente cliente = clienteDao.leerConCompartido(codigo);
+		for(Compartido compartido: cliente.getListaRecibido()) {
+			compartido.setVisto(true);
+		}
+		clienteDao.actualizar(cliente);
+		return cliente.getListaRecibido();
+	}
+	
+	public int compartidoSinVer(int codigo) throws Exception {
+		Cliente cliente = clienteDao.leerConCompartido(codigo);
+		int numero = 0;
+		for(Compartido compartido: cliente.getListaRecibido()) {
+			if(!compartido.isVisto()) {
+				numero++;
+			}
+		}
+		return numero;
+	}
+	
+	public void eliminarCarrito(int codigocliente, int codigoProducto)throws Exception{
+		Cliente cliente = clienteDao.leer(codigocliente);
+		for(CarritoDetalle cd: cliente.getCarrito()) {
+			if(cd.getProducto().getCodigo() == codigoProducto) {
+				cliente.getCarrito().remove(cd);
+				break;
+			}
+		}
+		clienteDao.actualizar(cliente);
+	}
+	
+	public List<ProductoVendido> listarCompra(int codigo) throws Exception{
+		Compra compra = compraDao.leer(codigo);
+		return compra.getListaProductos();
+	}
 }
+
+

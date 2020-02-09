@@ -63,14 +63,14 @@ public class ClienteDAO {
 	 */
 	public Cliente leer(int codigo) throws Exception{
 		Cliente cliente = em.find(Cliente.class, codigo);
-		cliente.getNombre();
-		cliente.getApellidos();
-		cliente.getCorreo();
-		//cliente.getFechaNacimiento();
-		//cliente.getImagen();
-		cliente.getTelefono();
 		cliente.getCarrito().size();
 		cliente.getListaCompras().size();
+		if(cliente.getCarrito() == null) {
+			cliente.setCarrito(new ArrayList<CarritoDetalle>());
+		}
+		if(cliente.getListaCompras() == null) {
+			cliente.setListaCompras(new ArrayList<Compra>());
+		}
 		return cliente;
 	}
 	

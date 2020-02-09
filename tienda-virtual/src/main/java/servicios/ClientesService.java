@@ -13,7 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import modelo.Cliente;
+import modelo.Compartido;
 import modelo_servicio.ClienteInfo;
+import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
 /**
@@ -41,9 +43,9 @@ public class ClientesService {
 	 * @return una lista de clientes
 	 */
 	@GET
-	@Path("/listarClientes")
+	@Path("listar/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<ClienteInfo> getClientes() {
+	public List<ClienteInfo> getClientes(@PathParam("id") int codigo) {
 		try {
 			List<Cliente> clientes = controladorMovil.listarClientes();
 			List<ClienteInfo> clientesInfo = new ArrayList<>();
@@ -56,7 +58,9 @@ public class ClientesService {
 				// clienteInfo.setFechaNacimiento(c.getFechaNacimiento().toString());
 				clienteInfo.setCorreo(c.getCorreo());
 				clienteInfo.setTelefono(c.getTelefono());
-				clientesInfo.add(clienteInfo);
+				if(codigo != c.getId()) {
+					clientesInfo.add(clienteInfo);
+				}
 			}
 			return clientesInfo;
 		} catch (Exception e) {
@@ -123,11 +127,58 @@ public class ClientesService {
 	@Path("crearCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public void createClient(Cliente cliente) {
+	public void createClient(ClienteInfo clienteInfo) {
+		Cliente cliente = new Cliente();
 		try {
+			cliente.setNombre(clienteInfo.getNombre());
+			cliente.setContrasenia(clienteInfo.getContrasenia());
+			cliente.setApellidos(clienteInfo.getContrasenia());
+			cliente.setTelefono(clienteInfo.getTelefono());
+			cliente.setCorreo(clienteInfo.getCorreo());
+			
 			controladorMovil.insertarCliente(cliente);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	@GET
+	@Path("listacompartido/{codigo}")
+	@Produces("application/json")
+	public List<ProductoInfo> listarCompartido(@PathParam("codigo") int codigo) {
+		try {
+			List<Compartido> lista = controladorMovil.listarCompartido(codigo);
+			List<ProductoInfo> listaCompartido = new ArrayList<>();
+			for(Compartido c: lista) {
+				ProductoInfo producto = new ProductoInfo();
+				producto.setNombreCompartido(c.getClienteEnvia().getNombre()+" "+c.getClienteEnvia().getApellidos());
+				producto.setCorreoCompartido(c.getClienteEnvia().getCorreo());
+				producto.setNombre(c.getProducto().getNombre());
+				producto.setCodigo(c.getProducto().getCodigo());
+				producto.setDescripcion(c.getProducto().getDescripcion());
+				producto.setImagenes(c.getProducto().getImagen());
+				producto.setPrecio(c.getProducto().getPrecio());
+				producto.setVotos(0);
+				listaCompartido.add(producto);
+			}
+			return listaCompartido;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@GET
+	@Path("numerocompartido/{codigo}")
+	@Produces("application/json")
+	public int numeroCompartido(@PathParam("codigo") int codigo) {
+		try {
+			return controladorMovil.compartidoSinVer(codigo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

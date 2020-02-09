@@ -98,7 +98,13 @@ public class CarritoService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public String eliminarCarrito(@PathParam("codigoCliente") int codigoCliente,
 			@PathParam("codigoProducto") int codigoProducto) {
-
+		try {
+			controladorMovil.eliminarCarrito(codigoCliente, codigoProducto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return e.getMessage();
+		}
 		return "";
 	}
 }

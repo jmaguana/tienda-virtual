@@ -32,6 +32,26 @@ public class ProductoInfo {
 	private String categoria;
 
 	private boolean isLike;
+	
+	private String nombreCompartido;
+	
+	private String correoCompartido;
+
+	public String getNombreCompartido() {
+		return nombreCompartido;
+	}
+
+	public void setNombreCompartido(String nombreCompartido) {
+		this.nombreCompartido = nombreCompartido;
+	}
+
+	public String getCorreoCompartido() {
+		return correoCompartido;
+	}
+
+	public void setCorreoCompartido(String correoCompartido) {
+		this.correoCompartido = correoCompartido;
+	}
 
 	/**
 	 * 

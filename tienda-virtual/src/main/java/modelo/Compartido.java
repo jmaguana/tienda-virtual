@@ -45,6 +45,16 @@ public class Compartido {
 	@JoinColumn(name = "recibe")
 	@NotNull
 	private Cliente clienteRecibe;
+	
+	private boolean isVisto;
+
+	public boolean isVisto() {
+		return isVisto;
+	}
+
+	public void setVisto(boolean isVisto) {
+		this.isVisto = isVisto;
+	}
 
 	/**
 	 * 
