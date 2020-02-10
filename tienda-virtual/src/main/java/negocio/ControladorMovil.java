@@ -19,6 +19,7 @@ import modelo.Compra;
 //import modelo.Producto;
 import modelo.ProductoStock;
 import modelo.ProductoVendido;
+import modelo_servicio.CompraInfo;
 
 /**
  * En esta clase tenemos todos aquellos atributos <br>
@@ -181,6 +182,26 @@ public class ControladorMovil {
 		
 		clienteDao.actualizar(c);
 	}
+	
+	public CompraInfo preCompra(int id) throws Exception{
+		double total = 0;
+		int cantidad = 0;
+		Cliente c = clienteDao.leer(id);
+		CompraInfo compra = new CompraInfo();
+		if(c.getCarrito().size()<=0) {
+			return null;
+		}
+		for (CarritoDetalle carrito : c.getCarrito()) {
+			if(carrito.getCantidad()<=carrito.getProducto().getStock()) {
+				total += (carrito.getCantidad() * carrito.getProducto().getPrecio());
+				cantidad = cantidad + carrito.getCantidad();
+			}
+		}
+		compra.setTotalProductos(cantidad);
+		compra.setTotal(total);
+		compra.setFecha((new Date()).toString());
+		return compra;
+	}	
 
 	/**
 	 * Metodo que permite realizar una compra
@@ -199,8 +220,7 @@ public class ControladorMovil {
 			return false;
 		}
 		for (CarritoDetalle carrito : c.getCarrito()) {
-			if(carrito.getCantidad()<=carrito.getProducto().getStock()) {
-							
+			if(carrito.getCantidad()<=carrito.getProducto().getStock()) {		
 				ProductoVendido pv = new ProductoVendido();
 				pv.setCantidad(carrito.getCantidad());
 				pv.setDescripcion(carrito.getProducto().getDescripcion());
@@ -232,6 +252,7 @@ public class ControladorMovil {
 			c.getListaCompras().add(compra);
 			c.getCarrito().clear();
 		}
+		c.setCompras(c.getCompras()+1);
 		clienteDao.actualizar(c);
 		return true;
 	}

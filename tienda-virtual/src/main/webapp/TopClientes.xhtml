@@ -7,7 +7,7 @@
 <ui:composition template="TemplateInicio.xhtml">
 
 <ui:define name="titulo">
-<h1>Productos mas vendidos</h1>
+<h1>Clientes estrella</h1>
 </ui:define>
 
 	<ui:define name="contenido">
@@ -19,38 +19,28 @@
 	
 		<h:form  id="tablaProductos">
 		
-			<h:dataTable  value="#{inicioBean.lista}" var="producto">
+			<h:dataTable  value="#{clienteBean.lista}" var="cliente">
 			
-			<h:column class="columnass">
-					<f:facet name="header">Imagen</f:facet>
-					
-					<h:graphicImage value="#{producto.imagen}" width="80px" height="80px">
-					</h:graphicImage>
-
+				<h:column class="columnass">
+					<f:facet name="header">Id</f:facet>
+					#{cliente.id}
 				</h:column>
-			
 				<h:column class="columnass">
 					<f:facet name="header">Nombre</f:facet>
-					#{producto.nombre}
+					#{cliente.nombre}
 				</h:column>
 				<h:column class="columnass">
-					<f:facet name="header">Descripcion</f:facet>
-					#{producto.descripcion}
+					<f:facet name="header">Apellido</f:facet>
+					#{cliente.apellidos}
 				</h:column>
 				<h:column class="columnass">
-					<f:facet name="header">Precio</f:facet>
-					#{producto.precio}
+					<f:facet name="header">Correo</f:facet>
+					#{cliente.correo}
 				</h:column>
 				<h:column class="columnass">
-					<f:facet name="header">Categoría</f:facet>
-					#{producto.categoria.nombre}
+					<f:facet name="header"># Compras</f:facet>
+					#{cliente.compras}
 				</h:column>
-				<h:column class="columnass">
-					<f:facet name="header">Vendidos</f:facet>
-					#{producto.vendido}
-				</h:column>
-				
-				
 			</h:dataTable>
 			
 			

@@ -6,9 +6,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.CategoriaDAO;
+import datos.ClienteDAO;
 import datos.ProductoDAO;
 import datos.UsuarioDAO;
 import modelo.Categoria;
+import modelo.Cliente;
 import modelo.ProductoStock;
 import modelo.Usuario;
 
@@ -35,7 +37,10 @@ public class ControladorWeb {
 	private ProductoDAO productoDao;
 	
 	@Inject
-	private UsuarioDAO usuariosDao;
+	private UsuarioDAO usuarioDao;
+	
+	@Inject
+	private ClienteDAO clienteDao;
 	
 	/**
 	 * Metodo que permite listar las categorias
@@ -164,7 +169,7 @@ public class ControladorWeb {
 	 * @return usuarios que es una lista de tipo Usuario
 	 */
 	public List<Usuario> listarUsuarios() {
-		return usuariosDao.listar();
+		return usuarioDao.listar();
 	}
 	
 	/**
@@ -173,7 +178,7 @@ public class ControladorWeb {
 	 * @return usuario que un objeto de tipo Usuario
 	 */
 	public Usuario leerUsuario(String cedula) {
-		return usuariosDao.leer(cedula);
+		return usuarioDao.leer(cedula);
 	}
 	
 	/**
@@ -181,7 +186,7 @@ public class ControladorWeb {
 	 * @param cedula de tipo int que pertenece al usuario
 	 */
 	public void borrarUsuario(String cedula) {
-		usuariosDao.borrar(cedula);
+		usuarioDao.borrar(cedula);
 	}
 	
 	/**
@@ -191,7 +196,7 @@ public class ControladorWeb {
 	 */
 	public void insertarUsuario(Usuario usuario)  {
 		try{
-			usuariosDao.insertar(usuario);
+			usuarioDao.insertar(usuario);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -202,7 +207,7 @@ public class ControladorWeb {
 	 * @param usuario de tipo Usuario
 	 */
 	public void actualizarUsuario(Usuario usuario) {
-		usuariosDao.actualizar(usuario);
+		usuarioDao.actualizar(usuario);
 	}
 	
 	/**
@@ -214,6 +219,27 @@ public class ControladorWeb {
 			return productoDao.listarProductosVendidos();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public List<ProductoStock> listarProductosMasVotados(){
+		try {
+			return productoDao.listarProductosMasVotados();
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	
+	public List<Cliente> listarClientesEstrella(){
+		try {
+			return clienteDao.listarClientesEstrella();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 	}

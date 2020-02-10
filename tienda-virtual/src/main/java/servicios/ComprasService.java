@@ -99,4 +99,16 @@ public class ComprasService {
 		}
 		return null;
 	}
+	
+	@GET
+	@Path("precompra/{codigo}")
+	@Produces({ MediaType.APPLICATION_JSON })	
+	public CompraInfo preCompras(@PathParam("codigo") int codigo) {
+		try {
+			return controladorMovil.preCompra(codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

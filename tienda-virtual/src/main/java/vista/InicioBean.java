@@ -29,6 +29,8 @@ public class InicioBean {
 	 * Atributo de la clase de tipo ProductoStock
 	 */
 	private List<ProductoStock> lista;
+	
+	private String valor;
 
 	/**
 	 * Atributo de tipo ControladorWeb
@@ -44,10 +46,18 @@ public class InicioBean {
 		return lista;
 	}
 
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
 	/**
 	 * 
 	 * @param lista pertenenciente a la clase ProductoStock
-	 */
+	 */	
 	public void setLista(List<ProductoStock> lista) {
 		this.lista = lista;
 	}
@@ -57,6 +67,24 @@ public class InicioBean {
 	 */
 	@PostConstruct
 	public void init() {
+		valor = "Productos mas votados";
 		lista = controlador.listarProductosVendidos();
+		//lista = controlador.listarProductosMasVotados();
 	}
+	
+	
+	public String accion() {
+		if(valor.equals("Productos mas votados")) {
+			lista = controlador.listarProductosVendidos();
+			valor = "Productos mas vendidos";
+			System.out.println(valor);
+		}else {
+			
+			lista = controlador.listarProductosMasVotados();
+			valor = "Productos mas votados";
+			System.out.println(valor);
+		}
+		return null;
+	}
+	
 }

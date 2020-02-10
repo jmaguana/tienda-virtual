@@ -24,6 +24,8 @@ public class ProductoInfo {
 	private String imagenes;
 
 	private double precio;
+	
+	private boolean hayStock;
 
 	private int votos;
 
@@ -39,6 +41,14 @@ public class ProductoInfo {
 
 	public String getNombreCompartido() {
 		return nombreCompartido;
+	}
+ 
+	public boolean isHayStock() {
+		return hayStock;
+	}
+
+	public void setHayStock(boolean hayStock) {
+		this.hayStock = hayStock;
 	}
 
 	public void setNombreCompartido(String nombreCompartido) {

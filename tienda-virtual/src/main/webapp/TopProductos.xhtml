@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+
+<ui:composition template="TemplateInicio.xhtml">
+
+<ui:define name="titulo">
+<h1>Top Productos</h1>
+</ui:define>
+
+	<ui:define name="contenido">
+	Top de Productos
+	</ui:define>
+	
+	<ui:define name="tabla">
+	
+	
+		<h:form  id="tablaProductos">
+		
+			<h:dataTable  value="#{inicioBean.lista}" var="producto">
+			
+			<h:column class="columnass">
+					<f:facet name="header">Imagen</f:facet>
+					
+					<h:graphicImage value="#{producto.imagen}" width="80px" height="80px">
+					</h:graphicImage>
+
+				</h:column>
+			
+				<h:column class="columnass">
+					<f:facet name="header">Nombre</f:facet>
+					#{producto.nombre}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Descripcion</f:facet>
+					#{producto.descripcion}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Precio</f:facet>
+					#{producto.precio}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Categoría</f:facet>
+					#{producto.categoria.nombre}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Vendidos</f:facet>
+					#{producto.vendido}
+				</h:column>
+				<h:column class="columnass">
+					<f:facet name="header">Votos</f:facet>
+					#{producto.votos.size()}
+				</h:column>
+				
+				
+			</h:dataTable>
+			
+			
+			
+		</h:form>
+		
+	
+	</ui:define>
+
+<ui:define name="botones">
+<h:form>
+<h:commandButton class="btn btn-primary btn-modify" action="#{inicioBean.accion()}" value="#{inicioBean.valor}" immediate="true">
+<f:ajax execute="@all" render="tablaProductos and @form"/>
+</h:commandButton>
+</h:form>
+</ui:define>
+
+
+</ui:composition>
+</html>

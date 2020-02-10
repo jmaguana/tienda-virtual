@@ -54,6 +54,9 @@ public class Cliente {
 	@NotNull
 	private String contrasenia;
 	
+	@NotNull
+	private int compras;
+
 	/**
 	 * Relaciones de uno a muchos que son necesarias para que el cliente <br>
 	 * tenga una relacion con las diferentes tablas como son carrito detalle 
@@ -84,6 +87,14 @@ public class Cliente {
 	@JoinTable(name = "votos")
 	private List<ProductoStock> listaVotos;
 
+	public int getCompras() {
+		return compras;
+	}
+
+	public void setCompras(int compras) {
+		this.compras = compras;
+	}
+	
 	/**
 	 * 
 	 * @return codigo perteneciente al cliente

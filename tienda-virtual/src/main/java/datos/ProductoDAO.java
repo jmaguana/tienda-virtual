@@ -136,6 +136,23 @@ public class ProductoDAO {
 		String jpql = "SELECT o FROM ProductoStock o WHERE o.vendido != 0 ORDER BY o.vendido DESC";
 		Query query = em.createQuery(jpql, ProductoStock.class);
 		List<ProductoStock> productosVendidos = query.getResultList();
+		for(ProductoStock p : productosVendidos) {
+			p.getVotos().size();
+		}
 		return productosVendidos;
 	}
+	
+	public List<ProductoStock> listarProductosMasVotados() throws Exception{
+		//"SELECT p FROM ProductoStock p INNER JOIN (SELECT o, COUNT(*) suma FROM votos o GROUP BY  listaVotos_codigo ORDER BY suma) tabl ON tabl.o.codigo = p.codigo"
+		//"SELECT * FROM ProductoStock p INNER JOIN (SELECT listaVotos_codigo, COUNT(*) suma FROM votos GROUP BY listaVotos_codigo ORDER BY suma DESC) o ON o.listaVotos_codigo = p.codigo"
+		//SELECT p FROM ProductoStock p INNER JOIN (SELECT listaVotos_codigo, COUNT(*) suma FROM votos v GROUP BY listaVotos_codigo ORDER BY suma DESC) o ON o.listaVotos_codigo = p.codigo
+		String jpql = "SELECT p FROM ProductoStock p WHERE size(p.votos) > 0 ORDER BY size(p.votos) DESC";
+		Query query = em.createQuery(jpql, ProductoStock.class);
+		List<ProductoStock> productos = query.getResultList();
+		for(ProductoStock p : productos) {
+			p.getVotos().size();
+		}
+		return productos;
+	}
+	
 }

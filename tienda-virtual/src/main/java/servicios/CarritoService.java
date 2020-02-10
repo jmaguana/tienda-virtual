@@ -55,6 +55,11 @@ public class CarritoService {
 				carritoInfo.setNombre(c.getProducto().getNombre());
 				carritoInfo.setPrecio(c.getProducto().getPrecio());
 				carritoInfo.setCategoria(c.getProducto().getCategoria().getNombre());
+				if(c.getCantidad() > c.getProducto().getStock()) {
+					carritoInfo.setHayStock(false);
+				}else {
+					carritoInfo.setHayStock(true);
+				}
 				carritosInfo.add(carritoInfo);
 			}
 			return carritosInfo;

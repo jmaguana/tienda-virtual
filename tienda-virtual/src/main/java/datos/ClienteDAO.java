@@ -188,4 +188,11 @@ public class ClienteDAO {
 		cliente.getListaCompras().size();
 		return cliente.getListaCompras();
 	}
+	
+	public List<Cliente> listarClientesEstrella() throws Exception{
+		String jpql = "SELECT o FROM Cliente o WHERE o.compras != 0 ORDER BY o.compras DESC";
+		Query query = em.createQuery(jpql, Cliente.class);
+		List<Cliente> clientes = query.getResultList();
+		return clientes;
+	}
 }
