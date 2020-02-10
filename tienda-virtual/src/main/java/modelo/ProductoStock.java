@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios en esta clase
+ * Clase ProductoStock, es como una clase que hereda de la clase
+ * Producto y a su vez tiene relacion con la clase Cliente y Categoria
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -31,14 +31,14 @@ public class ProductoStock extends Producto {
 	private int vendido;
 
 	/**
-	 * Atributo de la clase Cliente, el cual permite <br>
+	 * Atributo de la clase Cliente, el cual permite 
 	 * la relacion de muchos a muchos con la clase Categoria
 	 */
 	@ManyToMany(mappedBy = "listaVotos")
 	private List<Cliente> votos;
 
 	/**
-	 * Atributo de la clase Categoria, el cual permite <br>
+	 * Atributo de la clase Categoria, el cual permite
 	 * la relacion de muchos a uno con la clase Categoria
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -80,7 +80,7 @@ public class ProductoStock extends Producto {
 
 	/**
 	 * 
-	 * @return votos de tipo cliente, ya que cada voto va <br>
+	 * @return votos de tipo cliente, ya que cada voto va 
 	 * asociado a un cliente
 	 */
 	public List<Cliente> getVotos() {
@@ -105,7 +105,7 @@ public class ProductoStock extends Producto {
 	
 	/**
 	 * 
-	 * @param vendido, de tipo int y hace referencia al numero <br>
+	 * @param vendido, de tipo int y hace referencia al numero 
 	 * de productos que se han vendido
 	 */
 	public void setVendido(int vendido) {

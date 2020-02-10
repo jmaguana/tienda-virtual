@@ -15,8 +15,9 @@ import modelo.Compra;
 import modelo.ProductoStock;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase
+ * La clase ClienteDAO, mediante el EntityManager implementa
+ * metodos los cuales permiten realizar un CRUD del cliente
+ * modificando la base de datos
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -36,7 +37,7 @@ public class ClienteDAO {
 	 * Metodo que permite insertar un cliente en la BD
 	 * 
 	 * @param cliente de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al insertar un objeto de tipo Cliente
 	 */
 	public void insertar(Cliente cliente) throws Exception {
@@ -44,10 +45,10 @@ public class ClienteDAO {
 	}
 	
 	/**
-	 * Metodo que permite actualizar los campos de un cliente <br>
+	 * Metodo que permite actualizar los campos de un cliente 
 	 * en la BD
 	 * @param cliente de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al actualizar un objeto de tipo Cliente
 	 */
 	public void actualizar(Cliente cliente) throws Exception {
@@ -58,7 +59,7 @@ public class ClienteDAO {
 	 * Metodo que permite realizar la busqueda de un cliente
 	 * @param codigo de tipo int y pertenece a un cliente
 	 * @return cliente que un objeto de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al buscar un objeto de tipo Cliente
 	 */
 	public Cliente leer(int codigo) throws Exception{
@@ -78,7 +79,7 @@ public class ClienteDAO {
 	 * Metodo que permite buscar un cliente
 	 * @param codigo del cliente
 	 * @return cliente de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * @throws Exception se genera una excepcion si existe problema 
 	 * al realizar la busqueda
 	 */
 	public Cliente leerVacio(int codigo) throws Exception{
@@ -90,7 +91,7 @@ public class ClienteDAO {
 	 * Metodo que permite buscar un Cliente que haya compartido un producto
 	 * @param codigo del cliente
 	 * @return cliente de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * @throws Exception se genera una excepcion si existe problema 
 	 * al realizar la busqueda
 	 */
 	public Cliente leerConCompartido(int codigo) throws Exception{
@@ -107,11 +108,11 @@ public class ClienteDAO {
 	}
 	
 	/**
-	 * Metodo que permite buscar un cliente que haya realizado algun voto <br>
+	 * Metodo que permite buscar un cliente que haya realizado algun voto 
 	 * para un producto
 	 * @param codigo del cliente
 	 * @return cliente de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * @throws Exception se genera una excepcion si existe problema 
 	 * al realizar la busqueda
 	 */
 	public Cliente leerConVotos(int codigo) throws Exception{
@@ -124,10 +125,10 @@ public class ClienteDAO {
 	}
 	
 	/**
-	 * Metodo que permite listar todos los campos pertenecientes a <br>
+	 * Metodo que permite listar todos los campos pertenecientes a 
 	 * un cliente
 	 * @return clientes que es una lista de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * @throws Exception se genera una excepcion si existe problema 
 	 * al realizar la consulta
 	 */
 	public List<Cliente> listar() throws Exception {
@@ -138,7 +139,7 @@ public class ClienteDAO {
 	}
 	
 	/**
-	 * Metodo que permite comprobar las credenciales de un cliente para <br>
+	 * Metodo que permite comprobar las credenciales de un cliente para 
 	 * realizar un login
 	 * @param correo que pertenece al cliente
 	 * @param contrasenia que pertenece al cliente
@@ -158,7 +159,7 @@ public class ClienteDAO {
 	}
 	
 	/**
-	 * Metodo que permite listar los productos que se hayan aniadido <br>
+	 * Metodo que permite listar los productos que se hayan aniadido 
 	 * al carrito de compras
 	 * @param id, codigo del cliente
 	 * @return una lista de los productos que se desean comprar
@@ -189,6 +190,13 @@ public class ClienteDAO {
 		return cliente.getListaCompras();
 	}
 	
+	/**
+	 * Metodo que permite listar clientes, los cuales son considerados estrella
+	 * ya que realizan compras muy amenudo o tienen la mayor cantidad de compras
+	 * @return clientes es decir una lista de los mismos 
+	 * @throws Exception se genera una excepcion si existe problema 
+	 * al realizar la consulta
+	 */
 	public List<Cliente> listarClientesEstrella() throws Exception{
 		String jpql = "SELECT o FROM Cliente o WHERE o.compras != 0 ORDER BY o.compras DESC";
 		Query query = em.createQuery(jpql, Cliente.class);

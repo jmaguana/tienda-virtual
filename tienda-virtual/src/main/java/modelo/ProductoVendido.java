@@ -3,8 +3,8 @@ package modelo;
 import javax.persistence.Entity;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios en esta clase
+ * Clase ProductoVendido, esta clase herada de la clase Producto
+ * y con su atributo nos permite saber cuantos productos son vendidos
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda

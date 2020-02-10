@@ -8,9 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios para realizar <br>
- * la factura detalle
+ * La clase CarrtitoDetalle es algo similar a una factura detalle
+ * ya que esta clase con los atributos que tiene controla la cantidad
+ * de productos que uno desea adquirir
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 public class CarritoDetalle {
 
 	/**
-	 * Atributos de la clase <br>
+	 * Atributos de la clase 
 	 * Id, valor autogenerado
 	 */
 	@Id
@@ -36,8 +36,8 @@ public class CarritoDetalle {
 	private int cantidad;
 
 	/**
-	 * Atributo de la clase ProductoStock, el cual permite <br>
-	 * la relacion de muchos a uno entre la clase ProductoStock <br>
+	 * Atributo de la clase ProductoStock, el cual permite 
+	 * la relacion de muchos a uno entre la clase ProductoStock 
 	 * y esta clase.
 	 */
 	@ManyToOne
@@ -99,7 +99,7 @@ public class CarritoDetalle {
 	}
 
 	/**
-	 * Metodo que permite que al momento de imprimir el objeto por consola su <br>
+	 * Metodo que permite que al momento de imprimir el objeto por consola su 
 	 * contenido sea legible.
 	 */
 	@Override

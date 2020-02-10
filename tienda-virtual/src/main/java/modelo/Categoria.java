@@ -14,9 +14,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios para agregar <br>
- * una categoria para un producto
+ * Clase Categoria que tiene una relacion de uno a muchos con los productos
+ * y todos los atributos que son necesarios para el objeto en si.
+ * 
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -42,9 +42,9 @@ public class Categoria {
 	private String imagen;
 
 	/**
-	 * Atributo de la clase ProductoStock, el cual permite <br>
-	 * la relacion de muchos a uno entre la clase ProductoStock <br>
-	 * y esta clase, para saber que categoria se relaciona con cada producto.
+	 * Atributo de la clase ProductoStock, el cual permite la relacion de muchos a
+	 * uno entre la clase ProductoStock y esta clase, para saber que categoria se
+	 * relaciona con cada producto.
 	 */
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria")
@@ -60,8 +60,7 @@ public class Categoria {
 
 	/**
 	 * 
-	 * @param productos, una lista de productos pertenecientes <br>
-	 *                   a cada categoria
+	 * @param productos, una lista de productos pertenecientes a cada categoria
 	 */
 	public void setProductos(List<ProductoStock> productos) {
 		this.productos = productos;
@@ -132,8 +131,8 @@ public class Categoria {
 	}
 
 	/**
-	 * Metodo que permite que al momento de imprimir <br>
-	 * el objeto por consola su contenido sea legible.
+	 * Metodo que permite que al momento de imprimir el objeto por consola su
+	 * contenido sea legible.
 	 */
 	@Override
 	public String toString() {

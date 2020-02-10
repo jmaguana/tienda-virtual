@@ -15,9 +15,9 @@ import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
 /**
- * En esta clase tenemos un atributo que viene del paquete de negocio <br>
- * y webservices que son necesarios para la aplicacion movil en la parte <br>
- * de los productos
+ * En esta clase tenemos un atributo que viene del paquete de negocio y
+ * webservices que son necesarios para la aplicacion movil en la parte de los
+ * productos
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -35,6 +35,7 @@ public class ProductosService {
 
 	/**
 	 * Web serivce que permite listar los productos
+	 * 
 	 * @return una lista de productos de tipo ProductoInfo
 	 */
 	@GET
@@ -63,11 +64,12 @@ public class ProductosService {
 
 	/**
 	 * Web service que permite dar like a un producto
+	 * 
 	 * @param productoId codigo del producto
-	 * @param clienteId codigo del cliente
-	 * @param accion permite saber si al producto se le da un like o se lo quita
-	 * @return un mensaje de confirmacion para saber si el metodo se <br>
-	 * ejecuto correctamente
+	 * @param clienteId  codigo del cliente
+	 * @param accion     permite saber si al producto se le da un like o se lo quita
+	 * @return un mensaje de confirmacion para saber si el metodo se ejecuto
+	 *         correctamente
 	 */
 	@GET
 	@Path("/like/{productoid}/{clienteid}/{accion}")
@@ -94,10 +96,11 @@ public class ProductosService {
 
 	/**
 	 * Web service que permite saber si es un like
+	 * 
 	 * @param productoId codigo del producto
-	 * @param clienteId codigo del cliente
-	 * @return true o false dependiendo si se cumple o no con la accion <br>
-	 * del metodo del cual se hace uso
+	 * @param clienteId  codigo del cliente
+	 * @return true o false dependiendo si se cumple o no con la accion del metodo
+	 *         del cual se hace uso
 	 */
 	@GET
 	@Path("/islike/{productoid}/{clienteid}")
@@ -114,6 +117,7 @@ public class ProductosService {
 
 	/**
 	 * Web service que permite buscar a un producto
+	 * 
 	 * @param codigo
 	 * @return un objeto de tipo ProductoInfo
 	 */

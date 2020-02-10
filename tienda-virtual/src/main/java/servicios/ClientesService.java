@@ -19,8 +19,8 @@ import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
 /**
- * En esta clase tenemos un atributo que viene del paquete de negocio <br>
- * y webservices que son necesarios para la aplicacion movil en la parte <br>
+ * En esta clase tenemos un atributo que viene del paquete de negocio 
+ * y webservices que son necesarios para la aplicacion movil en la parte 
  * del cliente
  * 
  * @author Jhonny Maguana
@@ -142,6 +142,11 @@ public class ClientesService {
 		}
 	}
 	
+	/**
+	 * Servicio Web de tipo GET que permite listar los productos que se han compartido
+	 * @param codigo referente a la clase Compartido
+	 * @return listaCompartido o null dependiendo el caso
+	 */
 	@GET
 	@Path("listacompartido/{codigo}")
 	@Produces("application/json")
@@ -169,6 +174,13 @@ public class ClientesService {
 		return null;
 	}
 	
+	/**
+	 * Servicio Web de tipo GET que permite saber si el receptor de un producto
+	 * ya vio que se le habia compartido
+	 * @param codigo referente al cliente que se le ha compartido
+	 * @return un int y dependiendo del valor se sabra si el usuario vio o no lo que 
+	 * se le compartio el producto
+	 */
 	@GET
 	@Path("numerocompartido/{codigo}")
 	@Produces("application/json")

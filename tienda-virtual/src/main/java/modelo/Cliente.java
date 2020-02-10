@@ -16,8 +16,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios para un cliente
+ * Clase Cliente, esta clase hace referencia a los clientes en si, es
+ * decir, a aquellos que haran uso de la aplicacion para realizar compras 
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -58,7 +58,7 @@ public class Cliente {
 	private int compras;
 
 	/**
-	 * Relaciones de uno a muchos que son necesarias para que el cliente <br>
+	 * Relaciones de uno a muchos que son necesarias para que el cliente
 	 * tenga una relacion con las diferentes tablas como son carrito detalle 
 	 * o factura detalle, compra y compartido
 	 */
@@ -80,17 +80,25 @@ public class Cliente {
 	
 	
 	/**
-	 * Relacion de muchos a muchos con la tabla de productos para obtener <br>
+	 * Relacion de muchos a muchos con la tabla de productos para obtener 
 	 * la cantidad de votos que se le han dado
 	 */
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinTable(name = "votos")
 	private List<ProductoStock> listaVotos;
 
+	/**
+	 * Metodo get del atributo compras
+	 * @return compras, referente al numero de compras que ha realizado el usuario
+	 */
 	public int getCompras() {
 		return compras;
 	}
 
+	/**
+	 * Metodo set del atributo compras
+	 * @param compras, referente al numero de compras que tiene un usuario
+	 */
 	public void setCompras(int compras) {
 		this.compras = compras;
 	}
@@ -241,7 +249,7 @@ public class Cliente {
 
 	/**
 	 * 
-	 * @param listaEnviado, recibe una lista de tipo Compartido <br>
+	 * @param listaEnviado, recibe una lista de tipo Compartido 
 	 * que hace referencia a los producto enviados a un usuario
 	 */
 	public void setListaEnviado(List<Compartido> listaEnviado) {
@@ -258,7 +266,7 @@ public class Cliente {
 
 	/**
 	 * 
-	 * @param listaRecibido, recibe una lista de tipo Compartido <br>
+	 * @param listaRecibido, recibe una lista de tipo Compartido 
 	 * que hace referencia a los producto recibidos por un usuario
 	 */
 	public void setListaRecibido(List<Compartido> listaRecibido) {
@@ -290,7 +298,7 @@ public class Cliente {
 	}*/
 
 	/**
-	 * Metodo que permite que al momento de imprimir <br>
+	 * Metodo que permite que al momento de imprimir 
 	 * el objeto por consola su contenido sea legible.
 	 */
 	@Override

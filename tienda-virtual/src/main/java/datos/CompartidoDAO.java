@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import modelo.Compartido;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase
+ * Clase CompartidoDAO la cual permite mediante el uso del EntityManager
+ * insertar datos en la base de datos
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -26,7 +26,7 @@ public class CompartidoDAO {
 	 * Metodo que permite insertar una categoria en la BD
 	 * 
 	 * @param compartido de tipo Compartido
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al insertar un objeto de tipo Compartido
 	 */
 	public void insertar(Compartido compartido)throws Exception {

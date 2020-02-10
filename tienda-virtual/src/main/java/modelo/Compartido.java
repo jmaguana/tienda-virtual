@@ -9,8 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios en esta clase
+ * Clase Compartido, esta clase tiene un atributo que lo identifica
+ * y cuenta con todas las relaciones necesarias para que se pueda realizar
+ * el share de un producto entre los usuarios
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -46,12 +47,24 @@ public class Compartido {
 	@NotNull
 	private Cliente clienteRecibe;
 	
+	/**
+	 * Atributo de tipo boolean que permite saber si el producto (mensaje) ya fue recibido
+	 */
 	private boolean isVisto;
 
+	/**
+	 * Metodo booleano tipo get del atributo isVisto
+	 * @return isVisto que dependera de la salida para tomar un valor
+	 * de True o de False
+	 */
 	public boolean isVisto() {
 		return isVisto;
 	}
 
+	/**
+	 * Metodo set del atributo isVoto
+	 * @param isVisto de tipo booleano que cambiara segun la accion de True a False
+	 */
 	public void setVisto(boolean isVisto) {
 		this.isVisto = isVisto;
 	}

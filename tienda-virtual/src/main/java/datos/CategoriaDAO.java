@@ -10,8 +10,8 @@ import javax.persistence.Query;
 import modelo.Categoria;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase
+ * En esta clase CategoriaDAO, se implementan los metodos
+ * necesarios para realizar un CRUD de la misma
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -65,8 +65,7 @@ public class CategoriaDAO {
 	}
 	
 	/**
-	 * Metodo que permite listar todos los campos pertenecientes a <br>
-	 * una categoria
+	 * Metodo que permite listar todos los campos pertenecientes a una categoria
 	 * @return categorias que es una lista de tipo Categoria
 	 */
 	public List<Categoria> listar(){

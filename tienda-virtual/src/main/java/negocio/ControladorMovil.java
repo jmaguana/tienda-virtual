@@ -22,9 +22,8 @@ import modelo.ProductoVendido;
 import modelo_servicio.CompraInfo;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase y que van a ser <br>
- * utilizados por una aplicacion movil
+ * Clase ControladorMovil esta clase tiene todos aquellos metodos necesarios
+ * para manejar la parte movil de la aplicacion, que es la parte de comprar
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -54,7 +53,7 @@ public class ControladorMovil {
 	 * @param correo que pertenece al cliente
 	 * @param contrasenia que pertenece al cliente
 	 * @return un objeto de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * @throws Exception se genera una excepcion si existe problema 
 	 * al realizar el login
 	 */
 	public Cliente login(String correo, String contrasenia) throws Exception {
@@ -62,10 +61,10 @@ public class ControladorMovil {
 	}
 
 	/**
-	 * Metodo que permite listar todos los campos pertenecientes a <br>
+	 * Metodo que permite listar todos los campos pertenecientes a 
 	 * un cliente
 	 * @return clientes que es una lista de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problema <br>
+	 * @throws Exception se genera una excepcion si existe problema 
 	 * al realizar la consulta
 	 */
 	public List<Cliente> listarClientes() throws Exception {
@@ -75,7 +74,7 @@ public class ControladorMovil {
 	/**
 	 * Metodo que permite listar los productos 
 	 * @return productos que es una lista de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al listar los productos
 	 */
 	public List<ProductoStock> listarProductos() throws Exception {
@@ -83,11 +82,11 @@ public class ControladorMovil {
 	}
 
 	/**
-	 * Metodo que permite realizar la busqueda de un producto, el cual <br>
+	 * Metodo que permite realizar la busqueda de un producto, el cual 
 	 * tenga votos registrados
 	 * @param codigo de tipo int y pertenece a un producto
 	 * @return producto que un objeto de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al buscar un objeto de tipo ProductoStock
 	 */
 	public ProductoStock buscarProducto(int codigo) throws Exception{
@@ -95,11 +94,11 @@ public class ControladorMovil {
 	}
 
 	/**
-	 * Metodo que permite listar los productos que se hayan aniadido <br>
+	 * Metodo que permite listar los productos que se hayan aniadido 
 	 * al carrito de compras
 	 * @param id, codigo del cliente
 	 * @return una lista de los productos que se desean comprar
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al listar
 	 */
 	public List<CarritoDetalle> listarProductoCarrito(int codigo) throws Exception{
@@ -123,7 +122,7 @@ public class ControladorMovil {
 	 * Metodo que permite listar las compras
 	 * @param id_cliente
 	 * @return una listado de las compras que ha realizado un cliente
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al listar
 	 */
 	public List<Compra> listarCompras(int id_cliente) throws Exception{
@@ -136,7 +135,7 @@ public class ControladorMovil {
 	 * @param idReceptor codigo del que recibe
 	 * @param idCodigo 
 	 * @return True en caso de realizar el metodo correctamente
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al compartir
 	 */
 	public boolean compartir(int idEmisor, int idReceptor, int idCodigo) throws Exception {
@@ -158,8 +157,8 @@ public class ControladorMovil {
 	 * @param idCliente codigo del cliente
 	 * @param idProducto codigo del producto
 	 * @param cantidad cantidad del producto
-	 * @throws Exception se genera una excepcion si existe problemas <br>
-	 * al insertar
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al insertar en el carrito
 	 */
 	public void insertarCarrito(int idCliente, int idProducto, int cantidad) throws Exception {
 		ProductoStock p = productoDao.leer(idProducto);
@@ -183,6 +182,14 @@ public class ControladorMovil {
 		clienteDao.actualizar(c);
 	}
 	
+	/**
+	 * Metodo que permite realizar una precompra, ya que no se cuenta
+	 * aun con el metodo de pago y debe seleccionarlo
+	 * @param id codigo del cliente
+	 * @return compra objeto compra
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al realizar la precompra
+	 */
 	public CompraInfo preCompra(int id) throws Exception{
 		double total = 0;
 		int cantidad = 0;
@@ -207,7 +214,7 @@ public class ControladorMovil {
 	 * Metodo que permite realizar una compra
 	 * @param id codigo del cliente
 	 * @return True en caso de ser exitosa la compra
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al relizar la compra
 	 */
 	public boolean generarCompra(int id) throws Exception {
@@ -262,7 +269,7 @@ public class ControladorMovil {
 	 * @param clienteId codigo del cliente
 	 * @param productoId codigo del producto
 	 * @return True en caso de ser exitoso el metodo
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al dar like
 	 */
 	public boolean darLike(int clienteId, int productoId) throws Exception {
@@ -284,7 +291,7 @@ public class ControladorMovil {
 	 * @param clienteId codigo del cliente
 	 * @param productoId codigo del producto
 	 * @return True en caso de ser satisfactorio el resultado
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al verificar like
 	 */
 	public boolean isLiked(int clienteId, int productoId) throws Exception {
@@ -306,7 +313,7 @@ public class ControladorMovil {
 	 * @param clienteId codigo del cliente
 	 * @param productoId codigo del producto
 	 * @return True en caso de ser exitoso el metodo
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al quitar un like
 	 */
 	public boolean quitarLike(int clienteId, int productoId) throws Exception {
@@ -325,13 +332,20 @@ public class ControladorMovil {
 	 * Metodo que permite insertar un cliente en la BD
 	 * 
 	 * @param cliente de tipo Cliente
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al insertar un objeto de tipo Cliente
 	 */
 	public void insertarCliente(Cliente cliente) throws Exception {
 		clienteDao.insertar(cliente);
 	}
 	
+	/**
+	 * Metodo que permite listar los compartidos
+	 * @param codigo perteneciente al cliente
+	 * @return cliente de tipo List
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al listar
+	 */
 	public List<Compartido> listarCompartido(int codigo) throws Exception {
 		Cliente cliente = clienteDao.leerConCompartido(codigo);
 		for(Compartido compartido: cliente.getListaRecibido()) {
@@ -341,6 +355,15 @@ public class ControladorMovil {
 		return cliente.getListaRecibido();
 	}
 	
+	/**
+	 * Metodo que permite saber si un producto que ha sido compartido
+	 * ya ha sido visualizado por el receptor
+	 * @param codigo perteneciente al cliente
+	 * @return numero, el cual es de tipo int y dependiendo de su valor
+	 * se puede saber si el receptor ya vio o no la notificacion
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al realizar el metodo
+	 */
 	public int compartidoSinVer(int codigo) throws Exception {
 		Cliente cliente = clienteDao.leerConCompartido(codigo);
 		int numero = 0;
@@ -352,6 +375,14 @@ public class ControladorMovil {
 		return numero;
 	}
 	
+	/**
+	 * Metodo que permite eliminar un producto que ya haya sido agregado al carrito
+	 * y por alguna razon ya no se lo quiere comprar
+	 * @param codigocliente referente al codigo del cliente al cual pertenece el producto
+	 * @param codigoProducto referente al producto que se desea eliminar
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al eliminar algun producto del carrito
+	 */
 	public void eliminarCarrito(int codigocliente, int codigoProducto)throws Exception{
 		Cliente cliente = clienteDao.leer(codigocliente);
 		for(CarritoDetalle cd: cliente.getCarrito()) {
@@ -363,10 +394,15 @@ public class ControladorMovil {
 		clienteDao.actualizar(cliente);
 	}
 	
+	/**
+	 * Metodo que permite lista las compras y es de tipo List
+	 * @param codigo referente al codigo de la compra
+	 * @return un listado de los productos
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al listar las compras
+	 */
 	public List<ProductoVendido> listarCompra(int codigo) throws Exception{
 		Compra compra = compraDao.leer(codigo);
 		return compra.getListaProductos();
 	}
 }
-
-

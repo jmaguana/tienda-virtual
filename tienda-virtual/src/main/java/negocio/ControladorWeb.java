@@ -15,9 +15,8 @@ import modelo.ProductoStock;
 import modelo.Usuario;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase y que van a ser <br>
- * utilizados por una aplicacion web
+ * Clase ControladorWeb esta clase tiene todos aquellos metodos necesarios
+ * para manejar la parte web de la aplicacion, que es la parte de administracion
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -85,7 +84,7 @@ public class ControladorWeb {
 	
 	/**
 	 * Metodo que permite listar los productos
-	 * @return una lista de productos en caso de ser exitosa la busqueda <br>
+	 * @return una lista de productos en caso de ser exitosa la busqueda 
 	 * caso contrario retorna null
 	 */
 	public List<ProductoStock> listarProducto(){
@@ -110,7 +109,7 @@ public class ControladorWeb {
 	}
 	
 	/**
-	 * Metodo que permite actualizar los campos de un producto <br>
+	 * Metodo que permite actualizar los campos de un producto 
 	 * en la BD
 	 * @param producto de tipo ProductoStock
 	 */
@@ -123,7 +122,7 @@ public class ControladorWeb {
 	}
 	
 	/**
-	 * Metodo que permite buscar los productos sin necesidad de escribir el nombre <br>
+	 * Metodo que permite buscar los productos sin necesidad de escribir el nombre 
 	 * completo
 	 * @param nombre, nombre perteneciente al producto
 	 * @return productos que es una lista de tipo ProductoStock
@@ -223,6 +222,11 @@ public class ControladorWeb {
 		}
 	}
 	
+	/**
+	 * Metodo que permite listar todos aquellos productos que mas likes
+	 * tengan para saber las preferencias de los usuarios
+	 * @return lista de productos que tengan la mayor cantidad de votos
+	 */
 	public List<ProductoStock> listarProductosMasVotados(){
 		try {
 			return productoDao.listarProductosMasVotados();
@@ -233,7 +237,10 @@ public class ControladorWeb {
 		}
 	}
 	
-	
+	/**
+	 * Metodo que permite listar a los clientes que mas compran 
+	 * @return listado de clientes con la mayor cantidad de compras
+	 */
 	public List<Cliente> listarClientesEstrella(){
 		try {
 			return clienteDao.listarClientesEstrella();

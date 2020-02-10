@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios en esta clase
+ *Clase Producto, tiene todos aquellos atributos para el objeto Producto,
+ *esta clase es la clase padre de ProductoStock
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda

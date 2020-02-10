@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios para realizar la compra
+ * Clase Compra, esta clase hace referencia a la factura cabecera
+ * y tiene relacion con la clase ProductoVendido
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -47,7 +47,7 @@ public class Compra {
 
 	/**
 	 * 
-	 * @return codigo perteneciente a la tabla Compartido
+	 * @return codigo de la clase Compra
 	 */
 	public int getId() {
 		return id;
@@ -55,7 +55,7 @@ public class Compra {
 
 	/**
 	 * 
-	 * @param id, codigo de la clase Compartido
+	 * @param id, codigo de la clase Compra
 	 */
 	public void setId(int id) {
 		this.id = id;

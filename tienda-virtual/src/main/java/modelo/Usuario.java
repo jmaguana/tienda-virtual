@@ -10,8 +10,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y elementos que son necesarios en esta clase
+ * Clase Usuario, que hace referencia al Usuario Administrador
+ * el cual administrara la parte Web del proyecto
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda

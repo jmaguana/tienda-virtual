@@ -10,8 +10,8 @@ import javax.persistence.Query;
 import modelo.Usuario;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase
+ * Clase UsuarioDAO en esta clase se realiza un CRUD de un usuario
+ * mediante el uso de el atributo em del EntityManager
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -31,7 +31,7 @@ public class UsuarioDAO {
 	 * Metodo que permite insertar un usuario en la BD
 	 * 
 	 * @param usuario de tipo Usuario
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al insertar un objeto de tipo Usuario
 	 */
 	public void insertar(Usuario usuario) throws Exception {
@@ -39,7 +39,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Metodo que permite actualizar los campos de un usuario <br>
+	 * Metodo que permite actualizar los campos de un usuario 
 	 * en la BD
 	 * @param usuario de tipo Usuario
 	 */
@@ -66,7 +66,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Metodo que permite listar a todos los usuarios, registrados en <br>
+	 * Metodo que permite listar a todos los usuarios, registrados en 
 	 * la BD
 	 * @return usuarios que es una lista de tipo Usuario
 	 */
@@ -78,7 +78,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Metodo que permite comprobar las credenciales de un usuario para <br>
+	 * Metodo que permite comprobar las credenciales de un usuario para 
 	 * realizar un login
 	 * @param correo que pertenece al cliente
 	 * @param contrasenia que pertenece al cliente

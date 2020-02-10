@@ -11,8 +11,8 @@ import javax.persistence.Query;
 import modelo.ProductoStock;
 
 /**
- * En esta clase tenemos todos aquellos atributos <br>
- * y metodos que son necesarios en esta clase
+ * Clase ProductoDAO, mediante un atributo de tipo EntityManager
+ * se crean metodos los cuales alteran la base de datos
  * 
  * @author Jhonny Maguana
  * @author Sandra Peñaranda
@@ -32,7 +32,7 @@ public class ProductoDAO {
 	 * Metodo que permite insertar un producto en la BD
 	 * 
 	 * @param producto de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas
 	 * al insertar un objeto de tipo ProductoStock
 	 */
 	public void insertar(ProductoStock producto) throws Exception{
@@ -40,10 +40,10 @@ public class ProductoDAO {
 	}
 	
 	/**
-	 * Metodo que permite actualizar los campos de un producto <br>
+	 * Metodo que permite actualizar los campos de un producto 
 	 * en la BD
 	 * @param producto de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al actualizar un objeto de tipo ProductoStock
 	 */
 	public void actualizar(ProductoStock producto) throws Exception{
@@ -53,7 +53,7 @@ public class ProductoDAO {
 	/**
 	 * Metodo que permite eliminar un producto mediante un codigo
 	 * @param codigo de tipo int que pertenece al producto
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al eliminar un objeto de tipo ProductoStock
 	 */
 	public void borrar(int codigo) throws Exception{
@@ -61,11 +61,11 @@ public class ProductoDAO {
 	}
 	
 	/**
-	 * Metodo que permite buscar los productos sin necesidad de escribir el nombre <br>
+	 * Metodo que permite buscar los productos sin necesidad de escribir el nombre 
 	 * completo
 	 * @param nombre, nombre perteneciente al producto
 	 * @return productos que es una lista de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al buscar un objeto de tipo ProductoStock
 	 */
 	public List<ProductoStock> buscar(String nombre) throws Exception{
@@ -91,7 +91,7 @@ public class ProductoDAO {
 	 * Metodo que permite realizar la busqueda de un producto
 	 * @param codigo de tipo int y pertenece a un producto
 	 * @return producto que un objeto de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al buscar un objeto de tipo ProductoStock
 	 */
 	public ProductoStock leer(int codigo) throws Exception{
@@ -100,11 +100,11 @@ public class ProductoDAO {
 	}
 	
 	/**
-	 * Metodo que permite realizar la busqueda de un producto, el cual <br>
+	 * Metodo que permite realizar la busqueda de un producto, el cual 
 	 * tenga votos registrados
 	 * @param codigo de tipo int y pertenece a un producto
 	 * @return producto que un objeto de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al buscar un objeto de tipo ProductoStock
 	 */
 	public ProductoStock leerConVotos(int codigo) throws Exception{
@@ -116,7 +116,7 @@ public class ProductoDAO {
 	/**
 	 * Metodo que permite listar los productos 
 	 * @return productos que es una lista de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
+	 * @throws Exception se genera una excepcion si existe problemas 
 	 * al listar los productos
 	 */
 	public List<ProductoStock> listarProductos() throws Exception{
@@ -129,8 +129,8 @@ public class ProductoDAO {
 	/**
 	 * Metodo que permite listar los productos que ya se han vendido
 	 * @return productosVendidos que es una lista de tipo ProductoStock
-	 * @throws Exception se genera una excepcion si existe problemas <br>
-	 * al listar los productos
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al listar los productos mas vendidos
 	 */
 	public List<ProductoStock> listarProductosVendidos() throws Exception{
 		String jpql = "SELECT o FROM ProductoStock o WHERE o.vendido != 0 ORDER BY o.vendido DESC";
@@ -142,6 +142,12 @@ public class ProductoDAO {
 		return productosVendidos;
 	}
 	
+	/**
+	 * Metodo que permite listar los productos que tenga mas likes o votos
+	 * @return productos es decir un objeto de tipo ProductoStock
+	 * @throws Exception se genera una excepcion si existe problemas 
+	 * al listar los productos que mas likes tienen
+	 */
 	public List<ProductoStock> listarProductosMasVotados() throws Exception{
 		//"SELECT p FROM ProductoStock p INNER JOIN (SELECT o, COUNT(*) suma FROM votos o GROUP BY  listaVotos_codigo ORDER BY suma) tabl ON tabl.o.codigo = p.codigo"
 		//"SELECT * FROM ProductoStock p INNER JOIN (SELECT listaVotos_codigo, COUNT(*) suma FROM votos GROUP BY listaVotos_codigo ORDER BY suma DESC) o ON o.listaVotos_codigo = p.codigo"
@@ -154,5 +160,4 @@ public class ProductoDAO {
 		}
 		return productos;
 	}
-	
 }

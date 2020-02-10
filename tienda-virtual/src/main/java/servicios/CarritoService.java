@@ -15,8 +15,8 @@ import modelo_servicio.ProductoInfo;
 import negocio.ControladorMovil;
 
 /**
- * En esta clase tenemos un atributo que viene del paquete de negocio <br>
- * y webservices que son necesarios para la aplicacion movil en la parte <br>
+ * En esta clase tenemos un atributo que viene del paquete de negocio 
+ * y webservices que son necesarios para la aplicacion movil en la parte 
  * del carrito
  * 
  * @author Jhonny Maguana
@@ -55,9 +55,9 @@ public class CarritoService {
 				carritoInfo.setNombre(c.getProducto().getNombre());
 				carritoInfo.setPrecio(c.getProducto().getPrecio());
 				carritoInfo.setCategoria(c.getProducto().getCategoria().getNombre());
-				if(c.getCantidad() > c.getProducto().getStock()) {
+				if (c.getCantidad() > c.getProducto().getStock()) {
 					carritoInfo.setHayStock(false);
-				}else {
+				} else {
 					carritoInfo.setHayStock(true);
 				}
 				carritosInfo.add(carritoInfo);
